@@ -4,8 +4,8 @@
 let stage = "game";
 
 //player
-let yVal;
-let xVal;
+let yVal = 50;
+let xVal = 200;
 let ySpeed = 0;
 let acc = 0.3;
 let xSize = 30;
@@ -21,9 +21,6 @@ let heightPlat = 20;
 //Setup
 function setup() {
   createCanvas(400, 500);
-  frameRate(30);
-  xVal = 50;
-  yVal = 50;
 }
 //end of setup
 
@@ -43,25 +40,22 @@ function gameScreen() {
   rect(xPlat, yPlat, widthPlat, heightPlat);
   // draw player
   rect(xVal, yVal, xSize, ySize);
-
+  moveH();
+  keyPressed();
   //hit the bottom of the screen
   if (yVal >= 500 - ySize && jump == false) {
+    yVal = 500 - ySize;
     ySpeed = 0;
-    yVal = yVal;
-  } else {
-    //movement of player
-    moveH();
-    keyReleased();
-    yVal = yVal + ySpeed;
-    ySpeed = ySpeed + acc;
   }
+  yVal = yVal + ySpeed;
+  ySpeed = ySpeed + acc;
 
   //collision
 }
 //end of game
 
 ///functions
-function keyReleased() {
+function keyPressed() {
   //jumping
   if (key === " ") {
     yVal -= 10;
@@ -71,11 +65,11 @@ function keyReleased() {
   }
 }
 function moveH() {
-  // movement left and right with restrictions (hitting borders)
-  if (keyIsDown(65) && xVal > 0) {
-    xVal -= 3;
-  } else if (keyIsDown(68) && xVal < 400 - xSize) {
-    xVal += 3;
+  // movement left and right
+  if (keyIsDown(65)) {
+    xVal = xVal - 3;
+  } else if (keyIsDown(68)) {
+    xVal = xVal + 4;
   }
 }
 //end of functions
