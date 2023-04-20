@@ -40,36 +40,40 @@ function gameScreen() {
   rect(xPlat, yPlat, widthPlat, heightPlat);
   // draw player
   rect(xVal, yVal, xSize, ySize);
-  moveH();
-  keyPressed();
+
   //hit the bottom of the screen
-  if (yVal >= 500 - ySize && jump == false) {
+  if (yVal >= 500 - ySize) {
     yVal = 500 - ySize;
     ySpeed = 0;
+  } else {
+    yVal = yVal + ySpeed;
+    ySpeed = ySpeed + acc;
+    keyTyped();
+    keyPressed();
   }
-  yVal = yVal + ySpeed;
-  ySpeed = ySpeed + acc;
 
   //collision
 }
 //end of game
 
 ///functions
-function keyPressed() {
+function keyTyped() {
   //jumping
+
   if (key === " ") {
     yVal -= 10;
-    jump = true;
   } else {
-    jump = false;
+    yVal = yVal;
   }
 }
-function moveH() {
-  // movement left and right
-  if (keyIsDown(65)) {
+function keyPressed() {
+  if (key === "a") {
     xVal = xVal - 3;
-  } else if (keyIsDown(68)) {
+  } else if (key === "d") {
     xVal = xVal + 4;
+  } else {
+    xVal = xVal;
   }
 }
+
 //end of functions
