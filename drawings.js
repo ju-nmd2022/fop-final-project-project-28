@@ -81,7 +81,7 @@ rect(x + 244, y + 36, 6, 10);
 //Fairy
 //Wings
 //Wings outline
-fill(46, 161, 182);
+/*fill(46, 161, 182);
 rect(x + 30, y + 90, 30, 10);
 rect(x + 20, y + 100, 60, 10);
 rect(x + 10, y + 110, 80, 10);
@@ -112,7 +112,7 @@ fill(144, 215, 238);
 rect(x + 40, y + 110, 10, 10);
 rect(x + 30, y + 120, 30, 10);
 rect(x + 50, y + 130, 30, 10);
-rect(x + 50, y + 180, 20, 10);
+rect(x + 50, y + 180, 20, 10);*/
 
 //Dress
 //Dress outline

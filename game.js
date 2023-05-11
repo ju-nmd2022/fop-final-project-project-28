@@ -22,11 +22,12 @@ let yPlat = 350;
 let widthPlat = 100;
 let heightPlat = 15;
 let platform1;
-
+let platform2;
 //Setup
 function setup() {
   createCanvas(400, 500);
   platform1 = new platform(150, 250, 1);
+  platform2 = new platform(50, 150, 2);
 }
 //end of setup
 
@@ -77,6 +78,8 @@ function gameScreen() {
 
   platform1.move();
   platform1.display();
+  platform2.move();
+  platform2.display();
   //Text
   textSize(10);
   fill(255, 255, 255);
