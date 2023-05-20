@@ -1,33 +1,28 @@
 //global
 
 // game statges
-let stage = "game";
+let stage = "start";
+let gameTime = 0;
 
 //player
-let yVal = 50;
-let xVal = 200;
-let ySpeed = 0;
-let xSpeed = 5;
-let acc = 0.3;
-let xSize = 30;
-let ySize = 30;
-let jump = false;
-jHight = 10;
-let moveRight = false;
-let moveLeft = false;
 
 //platforms (rectangle)
-let xPlat = 200;
-let yPlat = 350;
-let widthPlat = 100;
-let heightPlat = 15;
-let platform1;
-let platform2;
+//let platform = [1, 2, 3, 4];
+
+let platformAmount = 3;
+//spikes
+let spike = [];
+let spikeCounter = 0;
 //Setup
 function setup() {
   createCanvas(400, 500);
-  platform1 = new platform(150, 250, 1);
-  platform2 = new platform(50, 150, 2);
+  platform1 = new platforms(random(0, 300), -200, random(3, 6), 1);
+  platform2 = new platforms(random(0, 300), -100, random(3, 6), 1);
+  platform3 = new platforms(random(0, 300), 0, random(3, 6), 1);
+  platform4 = new platforms(random(0, 300), 100, random(3, 6), 1);
+  platform5 = new platforms(random(0, 300), 200, random(3, 6), 1);
+
+  player1 = new player(200, 450);
 }
 //end of setup
 
@@ -36,66 +31,82 @@ function draw() {
   /// call on functions
   if (stage == "game") {
     gameScreen();
+
+    gameTime += 1;
+    spikeCounter += 1; // increment spike counter
+    platformCounter += 1;
+  } else if (stage == "start") {
+    yVal = 460;
+    xVal = 200;
+    startScreen();
+    gameTime = 0;
+    spikeCounter = 0;
+    platformCounter = 0;
   }
 }
 //end of draw
+
+function startScreen() {
+  background(67, 38, 100);
+}
 
 //game
 function gameScreen() {
   background(16, 17, 24);
 
-  // draw platform
-  rect(xPlat, yPlat, widthPlat, heightPlat);
+  player1.move();
+  player1.display();
 
-  // draw player
-  rect(xVal, yVal, xSize, ySize);
+  if (stage == "game") {
+    /*for (let i = 0; i < platformAmount; i++) {
+      platform[i] = new platforms(random(0, 300), random(0, 10));
+    }*/
 
-  //falling
-  yVal = yVal + ySpeed;
-  ySpeed = ySpeed + acc;
+    if (spikeCounter == 150) {
+      spikeCounter = 0; // reset counter
+      let valueSpike = Math.floor(Math.random() * 5) + 1;
 
-  //hit the bottom of the screen
-  if (yVal + ySize >= 500) {
-    yVal = 500 - ySize;
-    ySpeed = 0;
-  } else if (
-    yVal + ySize <= yPlat + heightPlat &&
-    yVal + ySize >= yPlat &&
-    xVal + xSize >= xPlat &&
-    xVal <= xPlat + widthPlat
-  ) {
-    ySpeed = 0;
-    yVal = yPlat - ySize;
+      for (let i = 0; i < valueSpike; i++) {
+        spike[i] = new spikes(random(0, 400), 0);
+      }
+    }
+
+    // update and display spikes
+    for (let i = 0; i < 5; i++) {
+      spike[i].move();
+      spike[i].display();
+    }
+
+    //update and display platform
+    /* for (let i = 0; i < platformAmount; i++) {
+      platform[i].move();
+      platform[i].display();
+    }*/
+
+    platform1.move();
+    platform1.display();
+    platform2.move();
+    platform2.display();
+    platform3.move();
+    platform3.display();
+    platform4.move();
+    platform4.display();
+    platform5.move();
+    platform5.display();
   }
 
-  // update moving character
-  if (moveRight) {
-    xVal = xVal + xSpeed;
-  }
-  if (moveLeft) {
-    xVal = xVal - xSpeed;
-  }
-
-  platform1.move();
-  platform1.display();
-  platform2.move();
-  platform2.display();
   //Text
   textSize(10);
   fill(255, 255, 255);
   text(
     "moveRight =  " +
-      moveRight +
+      player1.mR +
       "     moveLeft = " +
-      moveLeft +
+      player1.mL +
       "     jump = " +
-      jump +
-      "                 yValue = " +
-      yVal.toFixed(2) +
-      "                 ySpeed = " +
-      ySpeed.toFixed(2) +
-      "      xSpeed = " +
-      xSpeed,
+      player1.j +
+      "     gametime  " +
+      gameTime,
     10,
     10,
     width / 2,
@@ -106,51 +117,121 @@ function gameScreen() {
 
 function keyPressed() {
   if (key == "d") {
-    moveRight = true;
+    player1.mR = true;
   }
   if (key == "a") {
-    moveLeft = true;
+    player1.mL = true;
   }
-  if (ySpeed == 0) {
-    if (key == " ") {
-      yVal = yVal - ySpeed;
-      ySpeed = ySpeed - jHight;
-      jump = true;
+
+  if (key == " ") {
+    player1.j = true;
+    player1.y -= player1.yS;
+    player1.yS = player1.yS - 8; //jump height!!!!
+  }
+
+  if (key == "p") {
+    stage = "start";
+    spike = [];
+  }
+  if (key == "o") {
+    stage = "game";
+
+    for (let i = 0; i < 10; i++) {
+      spike[i] = new spikes(random(0, 400), 0);
     }
+    /*for (let i = 0; i < platformAmount; i++) {
+      platform[i] = new platforms(random(0, 300), 0);
+    }*/
   }
 }
 function keyReleased() {
   if (key == "d") {
-    moveRight = false;
+    player1.mR = false;
   }
   if (key == "a") {
-    moveLeft = false;
+    player1.mL = false;
+  }
+  if (key == " ") {
+    player1.j = false;
   }
 }
+//end of functions
+//start of classes
+// the player class
+class player {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.yS = 0;
+    this.xS = 5;
+    this.a = 0.3;
+    this.width = 30;
+    this.height = 30;
+    this.j = false;
+    this.mR = false;
+    this.mL = false;
+  }
+  move() {
+    //falling
+    this.y += this.yS;
+    this.yS += this.a;
+    // update moving character
+    if (this.mR) {
+      this.x += this.xS;
+    }
+    if (this.mL) {
+      this.x -= this.xS;
+    }
 
-class platform {
-  constructor(x, y, speed) {
+    //hit the bottom/top of the screen
+    if (this.y + this.height >= 500) {
+      this.y = 500 - this.height;
+      this.yS = 0;
+    }
+    if (this.y <= 0) {
+      this.y = 0;
+      this.yS *= -1;
+    }
+  }
+  display() {
+    fill(255, 255, 255);
+    rect(this.x, this.y, this.width, this.height);
+  }
+}
+//end of player class
+
+// Start of the platform class
+class platforms {
+  constructor(x, y, speed, fallspeed) {
     //platforms (rectangle)
     this.x = x;
     this.y = y;
     this.width = 100;
     this.height = 15;
     this.speed = speed;
+    this.yS = fallspeed;
   }
 
   move() {
     this.x += this.speed;
+    this.y += this.yS;
+
     if (this.x < 0 || this.x + this.width > 400) {
       this.speed *= -1;
     }
+    if (this.y >= 500) {
+      this.y = 0;
+      this.x = random(0, 300);
+    }
     if (
-      yVal + ySize <= this.y + this.height &&
-      yVal + ySize >= this.y &&
-      xVal + xSize >= this.x &&
-      xVal <= this.x + this.width
+      player1.y + player1.height <= this.y + this.height &&
+      player1.y + player1.height >= this.y &&
+      player1.x + player1.width >= this.x &&
+      player1.x <= this.x + this.width
     ) {
-      ySpeed = 0;
-      yVal = this.y - ySize;
+      player1.yS = this.yS;
+      player1.y = this.y - player1.height;
+      player1.x += this.speed;
     }
   }
 
@@ -160,5 +241,24 @@ class platform {
     rect(this.x, this.y, this.width, this.height);
   }
 }
+//end of platform class
 
-//end of functions
+//start of the spike class
+class spikes {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 10;
+    this.height = 20;
+  }
+  move() {
+    this.y += random(7);
+  }
+  display() {
+    fill(255, 255, 255);
+    rect(this.x, this.y, this.width, this.height);
+  }
+}
+//end of spike class
+
+//end of classes
