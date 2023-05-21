@@ -10,12 +10,18 @@ let gameTime = 0;
 //let platform = [1, 2, 3, 4];
 
 let platformAmount = 3;
+
 //spikes
 let spike = [];
 let spikeCounter = 0;
+
+//Canvas /*NEW*/
+let innerHeight = 500; /*NEW*/
+let innerWidth = 400; /*NEW*/
+
 //Setup
 function setup() {
-  createCanvas(400, 500);
+  createCanvas(innerWidth, innerHeight); /*NEW*/
   platform1 = new platforms(random(0, 300), -200, random(3, 6), 1);
   platform2 = new platforms(random(0, 300), -100, random(3, 6), 1);
   platform3 = new platforms(random(0, 300), 0, random(3, 6), 1);
@@ -156,6 +162,7 @@ function keyReleased() {
   }
 }
 //end of functions
+
 //start of classes
 // the player class
 class player {
@@ -216,10 +223,12 @@ class platforms {
     this.x += this.speed;
     this.y += this.yS;
 
-    if (this.x < 0 || this.x + this.width > 400) {
+    if (this.x < 0 || this.x + this.width > innerWidth) {
+      /*NEW*/
       this.speed *= -1;
     }
-    if (this.y >= 500) {
+    if (this.y >= innerHeight) {
+      /*NEW*/
       this.y = 0;
       this.x = random(0, 300);
     }
