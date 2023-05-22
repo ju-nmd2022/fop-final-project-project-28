@@ -283,8 +283,8 @@ class platforms {
     this.c = c;
     this.isOn = false;
     this.isDown = false;
-    this.brick = this.width / 13;
-    this.brickHeight = this.brick / 2;
+    this.brick = this.width / 14;
+    this.brickHeight = this.brick / 1.5;
   }
 
   move() {
@@ -335,9 +335,8 @@ class platforms {
 
     //First row of bricks
     rect(this.x, this.y, this.brick, this.brickHeight);
-    rect(this.x + this.brick + 2, this.y, this.brick, this.brickHeight);
+    rect(this.x + this.brick, this.y, this.brick - 2, this.brickHeight);
 
-    rect(this.x + this.brick * 2, this.y, this.brick - 2, this.brickHeight);
     rect(this.x + this.brick * 3, this.y, this.brick - 2, this.brickHeight);
     rect(this.x + this.brick * 4, this.y, this.brick - 2, this.brickHeight);
     rect(this.x + this.brick * 5, this.y, this.brick - 2, this.brickHeight);
@@ -349,6 +348,7 @@ class platforms {
     rect(this.x + this.brick * 11, this.y, this.brick - 2, this.brickHeight);
     rect(this.x + this.brick * 12, this.y, this.brick - 2, this.brickHeight);
     rect(this.x + this.brick * 13, this.y, this.brick - 2, this.brickHeight);
+    rect(this.x + this.brick * 14, this.y, this.brick - 2, this.brickHeight);
 
     //Second row of bricks
     rect(this.x, this.y + 12, 8, 10);
