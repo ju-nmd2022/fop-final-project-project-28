@@ -7,7 +7,7 @@ let gameTime = 0;
 //player
 
 //platforms (rectangle)
-//let platform = [1, 2, 3, 4];
+let platform = [];
 
 let platformAmount = 3;
 
@@ -16,18 +16,25 @@ let spike = [];
 let spikeCounter = 0;
 
 //Canvas /*NEW*/
-let innerHeight = 500; /*NEW*/
+let innerHeight = 700; /*NEW*/
 let innerWidth = 400; /*NEW*/
 
 //Setup
 function setup() {
   createCanvas(innerWidth, innerHeight); /*NEW*/
-  platform1 = new platforms(random(0, 300), -200, random(3, 6), 1);
+  platform1 = new platforms(random(0, innerWidth), -200, random(3, 6), 1);
   platform2 = new platforms(random(0, 300), -100, random(3, 6), 1);
   platform3 = new platforms(random(0, 300), 0, random(3, 6), 1);
   platform4 = new platforms(random(0, 300), 100, random(3, 6), 1);
-  platform5 = new platforms(random(0, 300), 200, random(3, 6), 1);
-
+  platform5 = new platforms(random(0, 300), 200, random(3, 6), 1); ///// i regret doing it this way but all the 300 is gonna be innerwitdh - platform.width D:
+  for (let i = 0; i < 7; i++) {
+    platform[i] = new platforms(
+      random(0, innerWidth),
+      100 * i,
+      random(3, 6),
+      1
+    );
+  }
   player1 = new player(200, 450);
 }
 //end of setup
@@ -73,7 +80,7 @@ function gameScreen() {
       let valueSpike = Math.floor(Math.random() * 5) + 1;
 
       for (let i = 0; i < valueSpike; i++) {
-        spike[i] = new spikes(random(0, 400), 0);
+        spike[i] = new spikes(random(0, 400), 0); ////// 400= innerwidth
       }
     }
 
@@ -143,7 +150,7 @@ function keyPressed() {
     stage = "game";
 
     for (let i = 0; i < 10; i++) {
-      spike[i] = new spikes(random(0, 400), 0);
+      spike[i] = new spikes(random(0, 400), 0); //// 400 ska bli innnerwidth
     }
     /*for (let i = 0; i < platformAmount; i++) {
       platform[i] = new platforms(random(0, 300), 0);
@@ -192,7 +199,8 @@ class player {
 
     //hit the bottom/top of the screen
     if (this.y + this.height >= 500) {
-      this.y = 500 - this.height;
+      ///////ändra till innerHeight
+      this.y = 500 - this.height; /////här också
       this.yS = 0;
     }
     if (this.y <= 0) {
