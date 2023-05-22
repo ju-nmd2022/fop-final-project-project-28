@@ -330,77 +330,7 @@ class platforms {
     } else {
       fill(100, 182, 172);
     }
-    // rect(this.x, this.y, this.width, this.height);
-    push();
-
-    //First row of bricks
-    rect(this.x, this.y, this.brick, this.brickHeight);
-    rect(this.x + this.brick, this.y, this.brick - 2, this.brickHeight);
-
-    rect(this.x + this.brick * 3, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 4, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 5, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 6, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 7, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 8, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 9, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 10, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 11, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 12, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 13, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 14, this.y, this.brick - 2, this.brickHeight);
-
-    //Second row of bricks
-    rect(this.x, this.y + 12, 8, 10);
-    rect(this.x + 10, this.y + 12, 16, 10);
-    rect(this.x + 28, this.y + 12, 16, 10);
-    rect(this.x + 46, this.y + 12, 16, 10);
-    rect(this.x + 64, this.y + 12, 16, 10);
-    rect(this.x + 82, this.y + 12, 16, 10);
-    rect(this.x + 100, this.y + 12, 16, 10);
-    rect(this.x + 118, this.y + 12, 16, 10);
-    rect(this.x + 136, this.y + 12, 16, 10);
-    rect(this.x + 154, this.y + 12, 16, 10);
-    rect(this.x + 172, this.y + 12, 16, 10);
-    rect(this.x + 190, this.y + 12, 16, 10);
-    rect(this.x + 208, this.y + 12, 16, 10);
-    rect(this.x + 226, this.y + 12, 16, 10);
-    rect(this.x + 244, this.y + 12, 6, 10);
-
-    //Third row of bricks
-    rect(this.x, this.y + 24, 16, 10);
-    rect(this.x + 18, this.y + 24, 16, 10);
-    rect(this.x + 36, this.y + 24, 16, 10);
-    rect(this.x + 54, this.y + 24, 16, 10);
-    rect(this.x + 72, this.y + 24, 16, 10);
-    rect(this.x + 90, this.y + 24, 16, 10);
-    rect(this.x + 108, this.y + 24, 16, 10);
-    rect(this.x + 126, this.y + 24, 16, 10);
-    rect(this.x + 144, this.y + 24, 16, 10);
-    rect(this.x + 162, this.y + 24, 16, 10);
-    rect(this.x + 180, this.y + 24, 16, 10);
-    rect(this.x + 198, this.y + 24, 16, 10);
-    rect(this.x + 216, this.y + 24, 16, 10);
-    rect(this.x + 234, this.y + 24, 16, 10);
-
-    //Fourth row of bricks
-    rect(this.x, this.y + 36, 8, 10);
-    rect(this.x + 10, this.y + 36, 16, 10);
-    rect(this.x + 28, this.y + 36, 16, 10);
-    rect(this.x + 46, this.y + 36, 16, 10);
-    rect(this.x + 64, this.y + 36, 16, 10);
-    rect(this.x + 82, this.y + 36, 16, 10);
-    rect(this.x + 100, this.y + 36, 16, 10);
-    rect(this.x + 118, this.y + 36, 16, 10);
-    rect(this.x + 136, this.y + 36, 16, 10);
-    rect(this.x + 154, this.y + 36, 16, 10);
-    rect(this.x + 172, this.y + 36, 16, 10);
-    rect(this.x + 190, this.y + 36, 16, 10);
-    rect(this.x + 208, this.y + 36, 16, 10);
-    rect(this.x + 226, this.y + 36, 16, 10);
-    rect(this.x + 244, this.y + 36, 6, 10);
-
-    pop();
+    rect(this.x, this.y, this.width, this.height);
   }
 }
 //end of platform class
