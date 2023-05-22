@@ -330,9 +330,8 @@ class platforms {
     } else {
       fill(100, 182, 172);
     }
-<<<<<<< Updated upstream
     rect(this.x, this.y, this.width, this.height);
-=======
+
     // rect(this.x, this.y, this.width, this.height);
     push();
 
@@ -403,7 +402,6 @@ class platforms {
     rect(this.x + 244, this.y + 36, 6, 10);
 
     pop();
->>>>>>> Stashed changes
   }
 }
 //end of platform class
