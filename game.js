@@ -11,7 +11,7 @@ let diffeculty = 1;
 //platforms (rectangle)
 let platform = [];
 let platformLit = false;
-let platformAmount = 6;
+let platformAmount = 7;
 
 //spikes
 let spike = [];
@@ -21,13 +21,13 @@ let spikeCollide = false;
 let spikeHitBottom = false;
 
 //Canvas
-let innerHeight = 600;
+let innerHeight = 700;
 let innerWidth = 400;
 
 //Setup
 function setup() {
   createCanvas(innerWidth, innerHeight);
-
+  frameRate(30);
   player1 = new player(200, 450, 255, 255, 255);
 }
 //end of setup
@@ -89,12 +89,7 @@ function gameScreen() {
   textSize(10);
   fill(255, 255, 255);
   text(
-    "     level: " +
-      diffeculty +
-      "     gametime: " +
-      gameTime +
-      " id it on the ground: " +
-      player1.isOnGround,
+    "     level: " + diffeculty + "     gametime: " + gameTime,
     10,
     10,
     width / 2,
@@ -195,10 +190,7 @@ function keyPressed() {
         random(0, innerWidth - platforms.width),
         100 * i,
         random(6) + diffeculty,
-        1 + diffeculty,
-        255,
-        255,
-        255
+        1 + diffeculty
       );
     }
     // creates the spike after the button has ben pressed
@@ -273,17 +265,15 @@ class player {
 
 // Start of the platform class
 class platforms {
-  constructor(x, y, speed, fallspeed, a, b, c) {
+  constructor(x, y, speed, fallspeed) {
     //platforms (rectangle)
     this.x = x;
     this.y = y;
-    this.width = 105;
-    this.height = 15;
+    this.width = 100;
+    this.height = 20;
     this.speed = speed;
     this.yS = fallspeed;
-    this.a = a;
-    this.b = b;
-    this.c = c;
+
     this.isOn = false;
     this.isDown = false;
     this.brick = this.width / 14;
@@ -335,46 +325,145 @@ class platforms {
     // draw platform
     // set color based on isOn property
     if (this.isOn) {
-      fill(this.a, this.b, 0); // change to green when player is on it
+      fill(115, 193, 159);
     } else {
-      fill(255, 255, 255);
+      fill(115, 193, 159);
     }
+
     rect(this.x, this.y, this.width, this.height);
 
-    // rect(this.x, this.y, this.width, this.height);
-    push();
-    fill(100, 182, 172);
-    //First row of bricks
-    rect(this.x, this.y, 6, 5);
-    rect(this.x + 8, this.y, 6, 5);
-    rect(this.x + 16, this.y, 6, 5);
-    rect(this.x + 24, this.y, 6, 5);
-    rect(this.x + 32, this.y, 6, 5);
-    rect(this.x + 40, this.y, 6, 5);
-    rect(this.x + 48, this.y, 6, 5);
-    rect(this.x + 56, this.y, 6, 5);
-    rect(this.x + 64, this.y, 6, 5);
-    rect(this.x + 72, this.y, 6, 5);
-    rect(this.x + 80, this.y, 6, 5);
-    rect(this.x + 88, this.y, 6, 5);
-    rect(this.x + 96, this.y, 6, 5);
+    //First row of bricks (small)
+    fill(19, 88, 80);
+    rect(this.x, this.y, 4, 2);
+    rect(this.x + 6, this.y, 4, 2);
+    rect(this.x + 12, this.y, 4, 2);
+    rect(this.x + 18, this.y, 4, 2);
+    rect(this.x + 24, this.y, 4, 2);
+    rect(this.x + 30, this.y, 4, 2);
+    rect(this.x + 36, this.y, 4, 2);
+    rect(this.x + 42, this.y, 4, 2);
+    rect(this.x + 48, this.y, 4, 2);
+    rect(this.x + 54, this.y, 4, 2);
+    rect(this.x + 60, this.y, 4, 2);
+    rect(this.x + 66, this.y, 4, 2);
+    rect(this.x + 72, this.y, 4, 2);
+    rect(this.x + 78, this.y, 4, 2);
+    rect(this.x + 84, this.y, 4, 2);
+    rect(this.x + 90, this.y, 4, 2);
+    rect(this.x + 96, this.y, 4, 2);
+    //Second row of bricks (small)
+    rect(this.x, this.y, 2, 2);
+    rect(this.x + 4, this.y + 3, 4, 2);
+    rect(this.x + 10, this.y + 3, 4, 2);
+    rect(this.x + 16, this.y + 3, 4, 2);
+    rect(this.x + 22, this.y + 3, 4, 2);
+    rect(this.x + 28, this.y + 3, 4, 2);
+    rect(this.x + 34, this.y + 3, 4, 2);
+    rect(this.x + 40, this.y + 3, 4, 2);
+    rect(this.x + 46, this.y + 3, 4, 2);
+    rect(this.x + 52, this.y + 3, 4, 2);
+    rect(this.x + 58, this.y + 3, 4, 2);
+    rect(this.x + 64, this.y + 3, 4, 2);
+    rect(this.x + 70, this.y + 3, 4, 2);
+    rect(this.x + 76, this.y + 3, 4, 2);
+    rect(this.x + 82, this.y + 3, 4, 2);
+    rect(this.x + 88, this.y + 3, 4, 2);
+    rect(this.x + 94, this.y + 3, 4, 2);
 
-    rect(this.x, this.y + 7, 3, 5);
-    rect(this.x + 5, this.y + 7, 6, 5);
-    rect(this.x + 13, this.y + 7, 6, 5);
-    rect(this.x + 21, this.y + 7, 6, 5);
-    rect(this.x + 29, this.y + 7, 6, 5);
-    rect(this.x + 37, this.y + 7, 6, 5);
-    rect(this.x + 45, this.y + 7, 6, 5);
-    rect(this.x + 53, this.y + 7, 6, 5);
-    rect(this.x + 61, this.y + 7, 6, 5);
-    rect(this.x + 69, this.y + 7, 6, 5);
-    rect(this.x + 77, this.y + 7, 6, 5);
-    rect(this.x + 85, this.y + 7, 6, 5);
-    rect(this.x + 93, this.y + 7, 6, 5);
-    rect(this.x + 101, this.y + 7, 3, 5);
+    //Third row of bricks (small)
+    rect(this.x, this.y, 4, 2);
+    rect(this.x + 6, this.y + 6, 4, 2);
+    rect(this.x + 12, this.y + 6, 4, 2);
+    rect(this.x + 18, this.y + 6, 4, 2);
+    rect(this.x + 24, this.y + 6, 4, 2);
+    rect(this.x + 30, this.y + 6, 4, 2);
+    rect(this.x + 36, this.y + 6, 4, 2);
+    rect(this.x + 42, this.y + 6, 4, 2);
+    rect(this.x + 48, this.y + 6, 4, 2);
+    rect(this.x + 54, this.y + 6, 4, 2);
+    rect(this.x + 60, this.y + 6, 4, 2);
+    rect(this.x + 66, this.y + 6, 4, 2);
+    rect(this.x + 72, this.y + 6, 4, 2);
+    rect(this.x + 78, this.y + 6, 4, 2);
+    rect(this.x + 84, this.y + 6, 4, 2);
+    rect(this.x + 90, this.y + 6, 4, 2);
+    rect(this.x + 96, this.y + 6, 4, 2);
 
-    pop();
+    //Fourth row of bricks (small)
+    rect(this.x, this.y, 2, 2);
+    rect(this.x + 4, this.y + 9, 4, 2);
+    rect(this.x + 10, this.y + 9, 4, 2);
+    rect(this.x + 16, this.y + 9, 4, 2);
+    rect(this.x + 22, this.y + 9, 4, 2);
+    rect(this.x + 28, this.y + 9, 4, 2);
+    rect(this.x + 34, this.y + 9, 4, 2);
+    rect(this.x + 40, this.y + 9, 4, 2);
+    rect(this.x + 46, this.y + 9, 4, 2);
+    rect(this.x + 52, this.y + 9, 4, 2);
+    rect(this.x + 58, this.y + 9, 4, 2);
+    rect(this.x + 64, this.y + 9, 4, 2);
+    rect(this.x + 70, this.y + 9, 4, 2);
+    rect(this.x + 76, this.y + 9, 4, 2);
+    rect(this.x + 82, this.y + 9, 4, 2);
+    rect(this.x + 88, this.y + 9, 4, 2);
+    rect(this.x + 94, this.y + 9, 4, 2);
+
+    //Fifth row of bricks (small)
+    rect(this.x, this.y, 4, 2);
+    rect(this.x + 6, this.y + 12, 4, 2);
+    rect(this.x + 12, this.y + 12, 4, 2);
+    rect(this.x + 18, this.y + 12, 4, 2);
+    rect(this.x + 24, this.y + 12, 4, 2);
+    rect(this.x + 30, this.y + 12, 4, 2);
+    rect(this.x + 36, this.y + 12, 4, 2);
+    rect(this.x + 42, this.y + 12, 4, 2);
+    rect(this.x + 48, this.y + 12, 4, 2);
+    rect(this.x + 54, this.y + 12, 4, 2);
+    rect(this.x + 60, this.y + 12, 4, 2);
+    rect(this.x + 66, this.y + 12, 4, 2);
+    rect(this.x + 72, this.y + 12, 4, 2);
+    rect(this.x + 78, this.y + 12, 4, 2);
+    rect(this.x + 84, this.y + 12, 4, 2);
+    rect(this.x + 90, this.y + 12, 4, 2);
+    rect(this.x + 96, this.y + 12, 4, 2);
+
+    //Sithis.xth row of bricks (small)
+    rect(this.x, this.y, 2, 2);
+    rect(this.x + 4, this.y + 15, 4, 2);
+    rect(this.x + 10, this.y + 15, 4, 2);
+    rect(this.x + 16, this.y + 15, 4, 2);
+    rect(this.x + 22, this.y + 15, 4, 2);
+    rect(this.x + 28, this.y + 15, 4, 2);
+    rect(this.x + 34, this.y + 15, 4, 2);
+    rect(this.x + 40, this.y + 15, 4, 2);
+    rect(this.x + 46, this.y + 15, 4, 2);
+    rect(this.x + 52, this.y + 15, 4, 2);
+    rect(this.x + 58, this.y + 15, 4, 2);
+    rect(this.x + 64, this.y + 15, 4, 2);
+    rect(this.x + 70, this.y + 15, 4, 2);
+    rect(this.x + 76, this.y + 15, 4, 2);
+    rect(this.x + 82, this.y + 15, 4, 2);
+    rect(this.x + 88, this.y + 15, 4, 2);
+    rect(this.x + 94, this.y + 15, 4, 2);
+
+    //Seventh row of bricks (small)
+    rect(this.x, this.y, 4, 2);
+    rect(this.x + 6, this.y + 18, 4, 2);
+    rect(this.x + 12, this.y + 18, 4, 2);
+    rect(this.x + 18, this.y + 18, 4, 2);
+    rect(this.x + 24, this.y + 18, 4, 2);
+    rect(this.x + 30, this.y + 18, 4, 2);
+    rect(this.x + 36, this.y + 18, 4, 2);
+    rect(this.x + 42, this.y + 18, 4, 2);
+    rect(this.x + 48, this.y + 18, 4, 2);
+    rect(this.x + 54, this.y + 18, 4, 2);
+    rect(this.x + 60, this.y + 18, 4, 2);
+    rect(this.x + 66, this.y + 18, 4, 2);
+    rect(this.x + 72, this.y + 18, 4, 2);
+    rect(this.x + 78, this.y + 18, 4, 2);
+    rect(this.x + 84, this.y + 18, 4, 2);
+    rect(this.x + 90, this.y + 18, 4, 2);
+    rect(this.x + 96, this.y + 18, 4, 2);
   }
 }
 //end of platform class
