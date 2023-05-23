@@ -488,7 +488,7 @@ class spikes {
     }*/
   }
   display() {
-    //rect(this.x, this.y, this.width, this.height);
+    rect(this.x, this.y, this.width, this.height);
     //Spikes (icicle)
     noStroke();
     //Dark
