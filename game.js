@@ -81,9 +81,9 @@ function loseScreen() {
 
 //game
 function gameScreen() {
-  anyPlatformHitBottom = false;
+  anyPlatformHitBottom = false; // skit i, existerar ej lol
 
-  // aestectics
+  // aestectics ( lägg in backgrund här tack :D)
   background(16, 17, 24);
   //Text
   textSize(10);
@@ -120,12 +120,7 @@ function gameScreen() {
         spike[i] = new spikes(random(0, innerWidth), 0);
       }
     }
-    /* if (spikeHitBottom) {
-      for (let i = 0; i < valueSpike + diffeculty; i++) {
-        spike[i] = new spikes(random(0, innerWidth), 0);
-        spikeHitBottom = false;
-      }
-    }*/
+
     // lose "villkor", how to get to the lose screen
     if (player1.y + player1.height >= innerHeight && gameTime >= 320) {
       background(200, 17, 0);
@@ -331,7 +326,7 @@ class platforms {
     }
 
     rect(this.x, this.y, this.width, this.height);
-
+    push();
     //First row of bricks (small)
     fill(19, 88, 80);
     rect(this.x, this.y, 4, 2);
@@ -352,7 +347,7 @@ class platforms {
     rect(this.x + 90, this.y, 4, 2);
     rect(this.x + 96, this.y, 4, 2);
     //Second row of bricks (small)
-    rect(this.x, this.y, 2, 2);
+    rect(this.x, this.y + 3, 2, 2);
     rect(this.x + 4, this.y + 3, 4, 2);
     rect(this.x + 10, this.y + 3, 4, 2);
     rect(this.x + 16, this.y + 3, 4, 2);
@@ -371,7 +366,7 @@ class platforms {
     rect(this.x + 94, this.y + 3, 4, 2);
 
     //Third row of bricks (small)
-    rect(this.x, this.y, 4, 2);
+    rect(this.x, this.y + 6, 4, 2);
     rect(this.x + 6, this.y + 6, 4, 2);
     rect(this.x + 12, this.y + 6, 4, 2);
     rect(this.x + 18, this.y + 6, 4, 2);
@@ -390,7 +385,7 @@ class platforms {
     rect(this.x + 96, this.y + 6, 4, 2);
 
     //Fourth row of bricks (small)
-    rect(this.x, this.y, 2, 2);
+    rect(this.x, this.y + 9, 2, 2);
     rect(this.x + 4, this.y + 9, 4, 2);
     rect(this.x + 10, this.y + 9, 4, 2);
     rect(this.x + 16, this.y + 9, 4, 2);
@@ -409,7 +404,7 @@ class platforms {
     rect(this.x + 94, this.y + 9, 4, 2);
 
     //Fifth row of bricks (small)
-    rect(this.x, this.y, 4, 2);
+    rect(this.x, this.y + 12, 4, 2);
     rect(this.x + 6, this.y + 12, 4, 2);
     rect(this.x + 12, this.y + 12, 4, 2);
     rect(this.x + 18, this.y + 12, 4, 2);
@@ -428,7 +423,7 @@ class platforms {
     rect(this.x + 96, this.y + 12, 4, 2);
 
     //Sithis.xth row of bricks (small)
-    rect(this.x, this.y, 2, 2);
+    rect(this.x, this.y + 15, 2, 2);
     rect(this.x + 4, this.y + 15, 4, 2);
     rect(this.x + 10, this.y + 15, 4, 2);
     rect(this.x + 16, this.y + 15, 4, 2);
@@ -447,7 +442,7 @@ class platforms {
     rect(this.x + 94, this.y + 15, 4, 2);
 
     //Seventh row of bricks (small)
-    rect(this.x, this.y, 4, 2);
+    rect(this.x, this.y + 18, 4, 2);
     rect(this.x + 6, this.y + 18, 4, 2);
     rect(this.x + 12, this.y + 18, 4, 2);
     rect(this.x + 18, this.y + 18, 4, 2);
@@ -464,6 +459,7 @@ class platforms {
     rect(this.x + 84, this.y + 18, 4, 2);
     rect(this.x + 90, this.y + 18, 4, 2);
     rect(this.x + 96, this.y + 18, 4, 2);
+    pop();
   }
 }
 //end of platform class

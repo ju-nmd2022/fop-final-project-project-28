@@ -4,7 +4,7 @@ This is a file containing all drawings used for our main game
 */
 
 x = 100;
-y = 200;
+y = 100;
 noStroke();
 
 //Background
