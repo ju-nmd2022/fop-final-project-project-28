@@ -66,6 +66,7 @@ function startScreen() {
 }
 
 function loseScreen() {
+  // makje it look nice here
   background(50, 50, 50);
   //Text
   textSize(10);
