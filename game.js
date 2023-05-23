@@ -23,8 +23,9 @@ let spikeHitBottom = false;
 //Canvas
 let innerHeight = 700;
 let innerWidth = 400;
-let lavaCountdown = 360;
 
+let lava = 400;
+let lavaCountdown = lava;
 //Setup
 function setup() {
   createCanvas(innerWidth, innerHeight);
@@ -109,7 +110,7 @@ function gameScreen() {
   player1.display();
 
   if (stage == "game") {
-    if (diffecultyTime === 300) {
+    if (diffecultyTime === 600) {
       diffecultyTime = 0; // reset counter
       diffeculty += 1; // add to the difficulty every time
     }
@@ -124,7 +125,7 @@ function gameScreen() {
       }
     }
 
-    if (gameTime <= 360) {
+    if (gameTime <= lava) {
       text(
         lavaCountdown + " Seconds before the lava comes!",
         100,
@@ -137,7 +138,7 @@ function gameScreen() {
     }
 
     // lose "villkor", how to get to the lose screen
-    if (player1.y + player1.height >= innerHeight && gameTime >= 360) {
+    if (player1.y + player1.height >= innerHeight && gameTime >= lava) {
       background(200, 17, 0);
     } else if (spikeCollide) {
       background(200, 17, 100);
@@ -188,7 +189,7 @@ function keyPressed() {
     player1.x = 150;
     player1.y = 500;
     spikeCollide = false;
-    lavaCountdown = 360;
+    lavaCountdown = lava;
     gameTime = 0;
     diffecultyTime = 0;
     diffeculty = 1;
@@ -287,8 +288,6 @@ class platforms {
 
     this.isOn = false;
     this.isDown = false;
-    this.brick = this.width / 14;
-    this.brickHeight = this.brick / 1.5;
   }
 
   move() {
@@ -336,7 +335,7 @@ class platforms {
     // draw platform
     // set color based on isOn property
     if (this.isOn) {
-      fill(115, 193, 159);
+      fill(255, 255, 255);
     } else {
       fill(115, 193, 159);
     }
