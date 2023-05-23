@@ -7,7 +7,6 @@ x = 100;
 y = 100;
 noStroke();
 
-/*
 //Background
 //Colordrop
 fill(0, 12, 46);
@@ -29,10 +28,13 @@ fill(6, 124, 98);
 rect(x - 100, y + 200, 400, 60);
 
 fill(1, 66, 72);
-rect(x - 100, y + 260, 400, 60);
+rect(x - 100, y + 260, 400, 80);
 
 fill(0, 37, 56);
-rect(x - 100, y + 320, 400, 80);
+rect(x - 100, y + 340, 400, 80);
+
+fill(0, 21, 52);
+rect(x - 100, 520, 400, 80);
 
 //Dark (left mountain)
 fill(0, 21, 50);
@@ -201,15 +203,17 @@ rect(x + 140, y + 110, 10, 10);
 rect(x + 130, y + 120, 10, 10);
 rect(x + 120, y + 130, 10, 10);
 //End of mountain
-*/
+
+fill(115, 193, 159); //Light shade ("cement")
+fill(19, 88, 80); //Dark shade (bricks)
 
 //New small brick
 //Block
-fill(218, 255, 239);
+fill(115, 193, 159);
 rect(x, y, 100, 20);
 
 //First row of bricks (small)
-fill(100, 182, 172);
+fill(19, 88, 80);
 rect(x, y, 4, 2);
 rect(x + 6, y, 4, 2);
 rect(x + 12, y, 4, 2);
