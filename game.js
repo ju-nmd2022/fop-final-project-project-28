@@ -488,9 +488,18 @@ class spikes {
     }*/
   }
   display() {
-    /// put spikes here
-    fill(255, 255, 255);
-    rect(this.x, this.y, this.width, this.height);
+    //rect(this.x, this.y, this.width, this.height);
+    //Spikes (icicle)
+    noStroke();
+    //Dark
+    fill(133, 189, 204);
+    rect(this.x + 140, this.y + 190, 20, 10);
+    rect(this.x + 144, this.y + 210, 12, 10);
+    rect(this.x + 148, this.y + 230, 4, 10);
+    //Light
+    fill(199, 236, 242);
+    rect(this.x + 142, this.y + 200, 16, 10);
+    rect(this.x + 146, this.y + 220, 8, 14);
   }
 }
 //end of spike class

@@ -204,16 +204,26 @@ rect(x + 130, y + 120, 10, 10);
 rect(x + 120, y + 130, 10, 10);
 //End of mountain
 
+//Alternative colors for the bricks
+//Option 1
 fill(115, 193, 159); //Light shade ("cement")
 fill(19, 88, 80); //Dark shade (bricks)
 
+//Option 2
+fill(78, 120, 123); //Light shade ("cement")
+fill(15, 59, 62); //Dark shade (bricks)
+
+//Option 3
+fill(72, 108, 128); //Light shade ("cement")
+fill(19, 40, 51); //Dark shade (bricks)
+
 //New small brick
 //Block
-fill(115, 193, 159);
+fill(72, 108, 128);
 rect(x, y, 100, 20);
 
 //First row of bricks (small)
-fill(19, 88, 80);
+fill(19, 40, 51);
 rect(x, y, 4, 2);
 rect(x + 6, y, 4, 2);
 rect(x + 12, y, 4, 2);
@@ -822,3 +832,16 @@ rect(250, 280, 20, 10);
 rect(250, 320, 20, 10);
 rect(240, 290, 30, 30);
 */
+
+//Spikes (icicle)
+//Dark
+fill(133, 189, 204);
+rect(this.x + 140, this.y + 190, 20, 10);
+rect(this.x + 144, this.y + 210, 12, 10);
+rect(this.x + 148, this.y + 230, 4, 10);
+//Light
+fill(199, 236, 242);
+rect(this.x + 142, this.y + 200, 16, 10);
+rect(this.x + 146, this.y + 220, 8, 14);
+
+//fill(232, 237, 237); (extra light, shine)
