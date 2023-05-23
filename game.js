@@ -340,15 +340,11 @@ class platforms {
       fill(115, 193, 159);
     }
 
-    rect(this.x, this.y, this.width, this.height);
     push();
-    //Brick
-    //Background rectangle
-    noStroke();
+    //Medium brick
     fill(78, 120, 123);
-    rect(this.x, this.y, 100, 19);
-
-    //First row of bricks
+    // rect(this.x, this.y, 100, 19);
+    //First row of bricks (medium)
     fill(15, 59, 62);
     rect(this.x, this.y, 6, 5);
     rect(this.x + 8, this.y, 12, 5);
@@ -359,7 +355,7 @@ class platforms {
     rect(this.x + 78, this.y, 12, 5);
     rect(this.x + 92, this.y, 8, 5);
 
-    //Second row of bricks
+    //Second row of bricks (medium)
     rect(this.x, this.y + 7, 11, 5);
     rect(this.x + 13, this.y + 7, 12, 5);
     rect(this.x + 27, this.y + 7, 12, 5);
@@ -369,7 +365,7 @@ class platforms {
     rect(this.x + 83, this.y + 7, 12, 5);
     rect(this.x + 97, this.y + 7, 3, 5);
 
-    //Third row of bricks
+    //Third row of bricks (medium)
     rect(this.x, this.y + 14, 6, 5);
     rect(this.x + 8, this.y + 14, 12, 5);
     rect(this.x + 22, this.y + 14, 12, 5);
@@ -406,7 +402,6 @@ class spikes {
     }*/
   }
   display() {
-    rect(this.x, this.y, this.width, this.height);
     push();
     //Spikes (icicle)
     noStroke();
