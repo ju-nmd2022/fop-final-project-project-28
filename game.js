@@ -281,7 +281,7 @@ class platforms {
     this.x = x;
     this.y = y;
     this.width = 100;
-    this.height = 20;
+    this.height = 19;
     this.speed = speed;
     this.yS = fallspeed;
 
@@ -345,6 +345,7 @@ class platforms {
     push();
     //Brick
     //Background rectangle
+    noStroke();
     fill(78, 120, 123);
     rect(this.x, this.y, 100, 19);
 
