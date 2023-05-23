@@ -23,6 +23,7 @@ let spikeHitBottom = false;
 //Canvas
 let innerHeight = 700;
 let innerWidth = 400;
+let lavaCountdown = 360;
 
 //Setup
 function setup() {
@@ -101,6 +102,7 @@ function gameScreen() {
   gameTime += 1;
   spikeCounter += 1;
   diffecultyTime += 1;
+  lavaCountdown -= 1;
 
   // make the playes
   player1.move();
@@ -122,8 +124,20 @@ function gameScreen() {
       }
     }
 
+    if (gameTime <= 360) {
+      text(
+        lavaCountdown + " Seconds before the lava comes!",
+        100,
+        550,
+        width / 2,
+        height / 2
+      );
+    } else {
+      rect(0, innerHeight - 20, innerWidth, 20);
+    }
+
     // lose "villkor", how to get to the lose screen
-    if (player1.y + player1.height >= innerHeight && gameTime >= 320) {
+    if (player1.y + player1.height >= innerHeight && gameTime >= 360) {
       background(200, 17, 0);
     } else if (spikeCollide) {
       background(200, 17, 100);
@@ -174,10 +188,11 @@ function keyPressed() {
     player1.x = 150;
     player1.y = 500;
     spikeCollide = false;
-    ///clears the arrays
+    lavaCountdown = 360;
     gameTime = 0;
     diffecultyTime = 0;
     diffeculty = 1;
+    ///clears the arrays
     spike = [];
     platform = [];
     //creates the platforms
@@ -488,18 +503,20 @@ class spikes {
     }*/
   }
   display() {
-    //rect(this.x, this.y, this.width, this.height);
+    push();
+
     //Spikes (icicle)
     noStroke();
     //Dark
     fill(133, 189, 204);
-    rect(this.x + 140, this.y + 190, 20, 10);
-    rect(this.x + 144, this.y + 210, 12, 10);
-    rect(this.x + 148, this.y + 230, 4, 10);
+    rect(this.x, this.y, this.width, this.height - 40);
+    rect(this.x + 4, this.y + 20, this.width - 8, this.height - 40);
+    rect(this.x + 8, this.y + 40, this.width - 16, this.height - 40);
     //Light
     fill(199, 236, 242);
-    rect(this.x + 142, this.y + 200, 16, 10);
-    rect(this.x + 146, this.y + 220, 8, 14);
+    rect(this.x + 2, this.y + 10, this.width - 4, this.height - 40);
+    rect(this.x + 6, this.y + 30, this.width - 12, this.height - 40);
+    pop();
   }
 }
 //end of spike class
