@@ -488,6 +488,7 @@ class spikes {
     }*/
   }
   display() {
+    /// put spikes here
     fill(255, 255, 255);
     rect(this.x, this.y, this.width, this.height);
   }
