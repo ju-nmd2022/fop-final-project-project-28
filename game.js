@@ -12,7 +12,6 @@ let diffeculty = 1;
 let platform = [];
 let platformLit = false;
 let platformAmount = 6;
-let platformHitBottom = false;
 
 //spikes
 let spike = [];
@@ -82,6 +81,8 @@ function loseScreen() {
 
 //game
 function gameScreen() {
+  anyPlatformHitBottom = false;
+
   // aestectics
   background(16, 17, 24);
   //Text
@@ -92,10 +93,8 @@ function gameScreen() {
       diffeculty +
       "     gametime: " +
       gameTime +
-      "  lit: " +
-      platformLit +
-      "   bottom: " +
-      platformHitBottom,
+      " id it on the ground: " +
+      player1.isOnGround,
     10,
     10,
     width / 2,
@@ -133,13 +132,10 @@ function gameScreen() {
       }
     }*/
     // lose "villkor", how to get to the lose screen
-    if (player1.y + player1.height >= innerHeight && gameTime >= 100000) {
+    if (player1.y + player1.height >= innerHeight && gameTime >= 320) {
       background(200, 17, 0);
-    } else if (spikeCollide == true) {
-    } else if (
-      (platformHitBottom = true && platformLit == false && gameTime >= 10000)
-    ) {
-      background(0, 17, 20);
+    } else if (spikeCollide) {
+      background(200, 17, 100);
     }
 
     /////update platforms
@@ -147,6 +143,7 @@ function gameScreen() {
       platform[i].move();
       platform[i].display();
     }
+
     // update and display spikes
     for (let i = 0; i < valueSpike; i++) {
       spike[i].display();
@@ -165,9 +162,11 @@ function keyPressed() {
   }
 
   if (keyCode === UP_ARROW || key === " ") {
-    player1.j = true;
-    player1.y -= player1.yS;
-    player1.yS = player1.yS - 5;
+    if (player1.isOnGround) {
+      player1.j = true;
+      player1.y -= player1.yS;
+      player1.yS = player1.yS - 8;
+    }
   }
 
   if (key == "p") {
@@ -238,6 +237,7 @@ class player {
     this.a = a;
     this.b = b;
     this.c = c;
+    this.isOnGround = false;
   }
   move() {
     //falling
@@ -251,10 +251,13 @@ class player {
       this.x -= this.xS;
     }
 
-    //hit the bottom/top of the screen
+    //hit the bottom of the screen
     if (this.y + this.height >= innerHeight) {
       this.y = innerHeight - this.height;
       this.yS = 0;
+      this.isOnGround = true;
+    } else {
+      this.isOnGround = false;
     }
     if (this.y <= 0) {
       this.y = 0;
@@ -274,7 +277,7 @@ class platforms {
     //platforms (rectangle)
     this.x = x;
     this.y = y;
-    this.width = 100;
+    this.width = 105;
     this.height = 15;
     this.speed = speed;
     this.yS = fallspeed;
@@ -294,17 +297,22 @@ class platforms {
     if (this.x < 0 || this.x + this.width > innerWidth) {
       this.speed *= -1;
     }
-    if (this.y >= innerHeight) {
-      platformHitBottom = true;
+    /* if (
+      this.y >= innerHeight - 50 &&
+      this.y <= innerHeight - this.height &&
+      this.y >= 200
+    ) {
+      anyPlatformHitBottom = true; // Set anyPlatformHitBottom to true if any platform hits the bottom
       this.isDown = true;
     } else {
+      anyPlatformHitBottom = false;
       this.isDown = false;
-      platformHitBottom = false;
-    }
-    if (this.y >= innerHeight + this.height) {
+    }*/
+
+    if (this.y >= innerHeight) {
       platformLit = false;
       this.isOn = false;
-      this.y = 0;
+      this.y = 0 - this.height;
       this.x = random(0, innerWidth - this.width);
     }
 
@@ -319,6 +327,7 @@ class platforms {
       player1.x += this.speed;
       platformLit = true;
       this.isOn = true;
+      player1.isOnGround = true;
     }
   }
 
@@ -328,78 +337,42 @@ class platforms {
     if (this.isOn) {
       fill(this.a, this.b, 0); // change to green when player is on it
     } else {
-      fill(100, 182, 172);
+      fill(255, 255, 255);
     }
     rect(this.x, this.y, this.width, this.height);
 
     // rect(this.x, this.y, this.width, this.height);
     push();
-
+    fill(100, 182, 172);
     //First row of bricks
-    rect(this.x, this.y, this.brick, this.brickHeight);
-    rect(this.x + this.brick + 2, this.y, this.brick, this.brickHeight);
-    rect(this.x + this.brick * 2, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 3, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 4, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 5, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 6, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 7, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 8, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 9, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 10, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 11, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 12, this.y, this.brick - 2, this.brickHeight);
-    rect(this.x + this.brick * 13, this.y, this.brick - 2, this.brickHeight);
+    rect(this.x, this.y, 6, 5);
+    rect(this.x + 8, this.y, 6, 5);
+    rect(this.x + 16, this.y, 6, 5);
+    rect(this.x + 24, this.y, 6, 5);
+    rect(this.x + 32, this.y, 6, 5);
+    rect(this.x + 40, this.y, 6, 5);
+    rect(this.x + 48, this.y, 6, 5);
+    rect(this.x + 56, this.y, 6, 5);
+    rect(this.x + 64, this.y, 6, 5);
+    rect(this.x + 72, this.y, 6, 5);
+    rect(this.x + 80, this.y, 6, 5);
+    rect(this.x + 88, this.y, 6, 5);
+    rect(this.x + 96, this.y, 6, 5);
 
-    //Second row of bricks
-    rect(this.x, this.y + 12, 8, 10);
-    rect(this.x + 10, this.y + 12, 16, 10);
-    rect(this.x + 28, this.y + 12, 16, 10);
-    rect(this.x + 46, this.y + 12, 16, 10);
-    rect(this.x + 64, this.y + 12, 16, 10);
-    rect(this.x + 82, this.y + 12, 16, 10);
-    rect(this.x + 100, this.y + 12, 16, 10);
-    rect(this.x + 118, this.y + 12, 16, 10);
-    rect(this.x + 136, this.y + 12, 16, 10);
-    rect(this.x + 154, this.y + 12, 16, 10);
-    rect(this.x + 172, this.y + 12, 16, 10);
-    rect(this.x + 190, this.y + 12, 16, 10);
-    rect(this.x + 208, this.y + 12, 16, 10);
-    rect(this.x + 226, this.y + 12, 16, 10);
-    rect(this.x + 244, this.y + 12, 6, 10);
-
-    //Third row of bricks
-    rect(this.x, this.y + 24, 16, 10);
-    rect(this.x + 18, this.y + 24, 16, 10);
-    rect(this.x + 36, this.y + 24, 16, 10);
-    rect(this.x + 54, this.y + 24, 16, 10);
-    rect(this.x + 72, this.y + 24, 16, 10);
-    rect(this.x + 90, this.y + 24, 16, 10);
-    rect(this.x + 108, this.y + 24, 16, 10);
-    rect(this.x + 126, this.y + 24, 16, 10);
-    rect(this.x + 144, this.y + 24, 16, 10);
-    rect(this.x + 162, this.y + 24, 16, 10);
-    rect(this.x + 180, this.y + 24, 16, 10);
-    rect(this.x + 198, this.y + 24, 16, 10);
-    rect(this.x + 216, this.y + 24, 16, 10);
-    rect(this.x + 234, this.y + 24, 16, 10);
-
-    //Fourth row of bricks
-    rect(this.x, this.y + 36, 8, 10);
-    rect(this.x + 10, this.y + 36, 16, 10);
-    rect(this.x + 28, this.y + 36, 16, 10);
-    rect(this.x + 46, this.y + 36, 16, 10);
-    rect(this.x + 64, this.y + 36, 16, 10);
-    rect(this.x + 82, this.y + 36, 16, 10);
-    rect(this.x + 100, this.y + 36, 16, 10);
-    rect(this.x + 118, this.y + 36, 16, 10);
-    rect(this.x + 136, this.y + 36, 16, 10);
-    rect(this.x + 154, this.y + 36, 16, 10);
-    rect(this.x + 172, this.y + 36, 16, 10);
-    rect(this.x + 190, this.y + 36, 16, 10);
-    rect(this.x + 208, this.y + 36, 16, 10);
-    rect(this.x + 226, this.y + 36, 16, 10);
-    rect(this.x + 244, this.y + 36, 6, 10);
+    rect(this.x, this.y + 7, 3, 5);
+    rect(this.x + 5, this.y + 7, 6, 5);
+    rect(this.x + 13, this.y + 7, 6, 5);
+    rect(this.x + 21, this.y + 7, 6, 5);
+    rect(this.x + 29, this.y + 7, 6, 5);
+    rect(this.x + 37, this.y + 7, 6, 5);
+    rect(this.x + 45, this.y + 7, 6, 5);
+    rect(this.x + 53, this.y + 7, 6, 5);
+    rect(this.x + 61, this.y + 7, 6, 5);
+    rect(this.x + 69, this.y + 7, 6, 5);
+    rect(this.x + 77, this.y + 7, 6, 5);
+    rect(this.x + 85, this.y + 7, 6, 5);
+    rect(this.x + 93, this.y + 7, 6, 5);
+    rect(this.x + 101, this.y + 7, 3, 5);
 
     pop();
   }
