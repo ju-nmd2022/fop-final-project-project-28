@@ -15,3 +15,9 @@ body {
 .backgroundDrop {
   position: absolute;
 }
+
+canvas {
+  top: 48px;
+  left: 520px;
+  position: absolute;
+}
