@@ -322,8 +322,17 @@ class player {
   }
   display() {
     push();
+    noStroke();
     fill(73, 212, 157);
-    rect(this.x, this.y, this.width, this.height);
+
+    rect(this.x, this.y + 5, this.width, this.height - 5);
+    rect(this.x + 5, this.y, this.width - 10, this.height);
+    fill(85, 133, 100);
+    rect(this.x + 5, this.y + 13, 3, 6);
+    rect(this.x + 20, this.y + 11, 3, 6);
+    fill(255, 255, 255);
+    rect(this.x + 15, this.y + 3, 6, 3);
+    rect(this.x + 25, this.y + 10, 3, 10);
     pop();
   }
 }
