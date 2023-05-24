@@ -24,6 +24,7 @@ let spikeHitBottom = false;
 let innerHeight = 700;
 let innerWidth = 400;
 
+//lava
 let lava = 40;
 let lavaCountdown = lava;
 
@@ -36,7 +37,9 @@ function preload() {
 }
 //Setup
 function setup() {
-  createCanvas(innerWidth, innerHeight);
+  let cnvs = createCanvas(innerWidth, innerHeight);
+  cnvs.parent("game");
+
   frameRate(30);
   player1 = new player(200, innerWidth / 2 - this.width / 2, 255, 255, 255);
 }

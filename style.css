@@ -19,6 +19,16 @@ body {
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
+#game {
+  background-color: #c4cad1;
+  grid-area: 2/3/4/4;
+  justify-content: center;
+  align-items: center;
+}
+.scoreboard {
+  grid-area: 2/4/3/5;
+  background-color: #c4cad1;
+}
 canvas {
   justify-content: center;
   align-items: center;
