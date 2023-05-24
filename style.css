@@ -13,11 +13,12 @@ body {
 }
 
 .backgroundDrop {
-  position: absolute;
+  left: 5rem;
+  position: fixed;
 }
 
 canvas {
-  top: 48px;
-  left: 520px;
+  top: 3rem;
+  left: 30rem;
   position: absolute;
 }
