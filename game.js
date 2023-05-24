@@ -42,9 +42,9 @@ function preload() {
 //Setup
 function setup() {
   //https://github.com/processing/p5.js/wiki/Positioning-your-canvas how i got this shit to the html and for it to lay in the grid :D
-  //let cnvs = createCanvas(innerWidth, innerHeight);
-  //cnvs.parent("game");
-  createCanvas(innerWidth, innerHeight);
+  let cnvs = createCanvas(innerWidth, innerHeight);
+  cnvs.parent("game");
+  //createCanvas(innerWidth, innerHeight);
   frameRate(30);
   player1 = new player(200, innerWidth / 2 - this.width / 2, 255, 255, 255);
 }
