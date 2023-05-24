@@ -60,7 +60,6 @@ function startScreen() {
 
   image(img2, 0, 0);
   img2.resize(400, 700);
-  mountainEdit(); // mountain edited
 }
 
 function loseScreen() {
