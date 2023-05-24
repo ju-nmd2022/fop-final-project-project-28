@@ -30,7 +30,7 @@ let lavaCountdown = lava;
 
 // scoreboard
 let scores = [];
-let score = document.getElementById("score");
+let higestScore = 0;
 
 let img; // this from p5 webbsite
 let img2;
@@ -72,10 +72,12 @@ function startScreen() {
 
 function loseScreen() {
   // makje it look nice here
+
   mountain();
   background(50, 50, 50);
   image(img, 0, 0);
   img.resize(400, 700);
+  scoreboard();
   //Text
   push();
 
@@ -95,6 +97,9 @@ function loseScreen() {
   fill(128, 0, 32);
 
   pop();
+  if (gameTime >= higestScore) {
+    higestScore = gameTime;
+  }
 }
 
 //game
@@ -247,12 +252,12 @@ function keyReleased() {
 }
 
 function scoreboard() {
+  const scoreslist = document.getElementById("scores");
   const li = document.createElement("li");
-  const nrScore = document.createTextNode(
-    "Time; " + gameTime + " - lvl: " + diffeculty
-  );
-  li.appendChild("nrScore");
-  document.getElementById("scores").appendChild(li);
+  const nrScore = document.createTextNode(round(higestScore));
+  li.appendChild(nrScore);
+  scoreslist.innerHTML = "";
+  scoreslist.appendChild(li);
 }
 //end of functions
 
