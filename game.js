@@ -1,7 +1,7 @@
 //global
 
 // game statges
-let stage = "lose";
+let stage = "start";
 let gameTime = 0;
 let diffecultyTime = 0;
 let diffeculty = 1;
@@ -28,9 +28,11 @@ let lava = 400;
 let lavaCountdown = lava;
 
 let img; // this from p5 webbsite
+let img2;
 function preload() {
   // this too
   img = loadImage("GameOver.png"); // i know it is a space between the game and over, idc
+  img2 = loadImage("start.png");
 }
 //Setup
 function setup() {
@@ -55,14 +57,10 @@ function draw() {
 
 function startScreen() {
   // The look of the background
-  mountain();
-  //Text
-  push();
-  textSize(40);
-  textFont("Helvetica");
-  fill(255, 255, 255);
-  text("Press 's' To Start", 10, 640, width, height);
-  pop();
+
+  image(img2, 0, 0);
+  img2.resize(400, 700);
+  mountainEdit(); // mountain edited
 }
 
 function loseScreen() {
@@ -79,6 +77,7 @@ function loseScreen() {
   fill(128, 0, 32);
 
   text("Lvl: " + diffeculty, innerWidth / 2 - 60, 310, width, height);
+  textSize(15);
   text("Time: " + gameTime + "s", innerWidth / 2 - 60, 350, width, height);
   fill(128, 0, 32);
 
@@ -91,6 +90,7 @@ function gameScreen() {
 
   // aestectics ( lägg in backgrund här tack :D)
   mountain();
+
   //Text
   push();
   textSize(10);
@@ -669,3 +669,177 @@ function mountain() {
   rect(x + 120, y + 130, 10, 10);
   pop();
 } //End of mountain
+function mountainEdit() {
+  let x = 100;
+  let y = 450;
+  push();
+  noStroke();
+
+  //Dark (left mountain)
+  fill(0, 21, 50);
+  rect(x + 30, y + 110, 30, 10);
+  rect(x + 20, y + 120, 50, 10);
+  rect(x + 10, y + 130, 70, 10);
+  rect(x, y + 140, 90, 10);
+  rect(x - 10, y + 150, 110, 10);
+  rect(x - 20, y + 160, 130, 10);
+  rect(x - 30, y + 170, 330, 10);
+  rect(x - 40, y + 180, 340, 10);
+  rect(x - 50, y + 190, 350, 10);
+  rect(x - 70, y + 200, 370, 10);
+  rect(x - 80, y + 210, 380, 10);
+  rect(x - 90, y + 220, 390, 10);
+  rect(x - 100, y + 230, 400, 30);
+
+  //Medium (left mounatain)
+  fill(1, 111, 90);
+  rect(x + 30, y + 110, 30, 10);
+  rect(x + 20, y + 120, 30, 10);
+  rect(x + 10, y + 130, 30, 10);
+  rect(x, y + 140, 30, 10);
+  rect(x - 10, y + 150, 40, 10);
+  rect(x - 20, y + 160, 40, 10);
+  rect(x - 30, y + 170, 30, 10);
+  rect(x - 40, y + 180, 30, 10);
+  rect(x - 50, y + 190, 30, 10);
+  rect(x - 70, y + 200, 50, 10);
+  rect(x - 80, y + 210, 40, 10);
+  rect(x - 90, y + 220, 40, 10);
+  rect(x - 100, y + 230, 50, 10);
+  rect(x - 100, y + 240, 40, 10);
+  rect(x - 100, y + 250, 20, 10);
+  rect(x - 60, y + 250, 10, 10);
+  rect(x - 50, y + 230, 10, 20);
+  rect(x - 20, y + 210, 10, 20);
+  rect(x - 30, y + 230, 10, 10);
+  rect(x - 10, y + 200, 10, 20);
+  rect(x, y + 180, 10, 10);
+  rect(x + 20, y + 170, 10, 10);
+
+  //Light (left mountain)
+  fill(2, 161, 108);
+  rect(x + 30, y + 110, 20, 10);
+  rect(x + 20, y + 120, 20, 10);
+  rect(x + 10, y + 130, 20, 10);
+  rect(x, y + 140, 20, 10);
+  rect(x - 10, y + 150, 30, 10);
+  rect(x - 20, y + 160, 20, 10);
+  rect(x - 30, y + 170, 20, 10);
+  rect(x - 40, y + 180, 20, 10);
+  rect(x - 50, y + 190, 30, 10);
+  rect(x - 70, y + 200, 30, 10);
+  rect(x - 80, y + 210, 30, 10);
+  rect(x - 90, y + 220, 30, 10);
+  rect(x - 100, y + 230, 30, 10);
+  rect(x - 100, y + 240, 30, 10);
+  rect(x - 100, y + 250, 10, 10);
+
+  //Extra light (left mountain)
+  fill(2, 182, 122);
+  rect(x + 30, y + 110, 10, 10);
+  rect(x + 20, y + 120, 10, 10);
+  rect(x + 10, y + 130, 10, 10);
+  rect(x, y + 140, 10, 10);
+  rect(x - 10, y + 150, 20, 10);
+  rect(x - 20, y + 160, 10, 10);
+  rect(x - 30, y + 170, 10, 10);
+  rect(x - 40, y + 180, 10, 10);
+  rect(x - 50, y + 190, 10, 10);
+  rect(x - 70, y + 200, 20, 10);
+  rect(x - 80, y + 210, 10, 10);
+  rect(x - 90, y + 220, 20, 10);
+  rect(x - 100, y + 230, 10, 10);
+
+  //Dark (right mountain)
+  fill(0, 21, 50);
+  rect(x + 250, y, 50, 10);
+  rect(x + 240, y + 10, 60, 10);
+  rect(x + 230, y + 20, 70, 10);
+  rect(x + 220, y + 30, 80, 10);
+  rect(x + 210, y + 40, 90, 10);
+  rect(x + 200, y + 50, 100, 10);
+  rect(x + 180, y + 60, 120, 10);
+  rect(x + 170, y + 70, 130, 10);
+  rect(x + 160, y + 80, 140, 10);
+  rect(x + 150, y + 90, 150, 20);
+  rect(x + 140, y + 110, 160, 10);
+  rect(x + 130, y + 120, 170, 10);
+  rect(x + 120, y + 130, 180, 10);
+  rect(x + 110, y + 140, 190, 10);
+  rect(x + 100, y + 150, 200, 10);
+  rect(x + 110, y + 160, 190, 10);
+
+  //Medium (right mounatain)
+  fill(1, 111, 90);
+  rect(x + 280, y - 40, 20, 10);
+  rect(x + 270, y - 30, 30, 10);
+  rect(x + 260, y - 20, 40, 20);
+  rect(x + 250, y, 50, 10);
+  rect(x + 240, y + 10, 50, 10);
+  rect(x + 230, y + 20, 50, 10);
+  rect(x + 220, y + 30, 60, 10);
+  rect(x + 210, y + 40, 60, 10);
+  rect(x + 200, y + 50, 50, 10);
+  rect(x + 180, y + 60, 60, 10);
+  rect(x + 170, y + 70, 60, 10);
+  rect(x + 160, y + 80, 60, 10);
+  rect(x + 150, y + 90, 50, 10);
+  rect(x + 150, y + 100, 50, 10);
+  rect(x + 140, y + 110, 50, 10);
+  rect(x + 130, y + 120, 50, 10);
+  rect(x + 120, y + 130, 50, 10);
+  rect(x + 110, y + 140, 40, 10);
+  rect(x + 100, y + 150, 40, 10);
+  rect(x + 190, y + 130, 10, 20);
+  rect(x + 180, y + 150, 10, 10);
+  rect(x + 150, y + 150, 10, 10);
+  rect(x + 140, y + 160, 10, 10);
+  rect(x + 120, y + 160, 10, 10);
+  rect(x + 110, y + 170, 10, 10);
+  rect(x + 170, y + 140, 10, 30);
+  rect(x + 200, y + 110, 10, 20);
+  rect(x + 240, y + 70, 10, 20);
+  rect(x + 230, y + 90, 10, 10);
+
+  //Light (right mountain)
+  fill(2, 161, 108);
+  rect(x + 280, y - 40, 10, 10);
+  rect(x + 270, y - 30, 20, 10);
+  rect(x + 260, y - 20, 20, 20);
+  rect(x + 250, y, 20, 10);
+  rect(x + 240, y + 10, 30, 10);
+  rect(x + 230, y + 20, 30, 10);
+  rect(x + 220, y + 30, 30, 10);
+  rect(x + 210, y + 40, 40, 10);
+  rect(x + 200, y + 50, 30, 10);
+  rect(x + 180, y + 60, 40, 10);
+  rect(x + 170, y + 70, 40, 10);
+  rect(x + 160, y + 80, 40, 10);
+  rect(x + 150, y + 90, 30, 10);
+  rect(x + 150, y + 100, 20, 10);
+  rect(x + 140, y + 110, 20, 10);
+  rect(x + 130, y + 120, 30, 10);
+  rect(x + 120, y + 130, 20, 10);
+  rect(x + 110, y + 140, 20, 10);
+  rect(x + 100, y + 150, 20, 10);
+
+  //Extra light (right mountain)
+  fill(2, 182, 122);
+  rect(x + 270, y - 30, 10, 10);
+  rect(x + 260, y - 20, 10, 20);
+  rect(x + 250, y, 10, 10);
+  rect(x + 240, y + 10, 10, 10);
+  rect(x + 230, y + 20, 10, 10);
+  rect(x + 220, y + 30, 10, 10);
+  rect(x + 210, y + 40, 10, 10);
+  rect(x + 200, y + 50, 10, 10);
+  rect(x + 180, y + 60, 20, 10);
+  rect(x + 170, y + 70, 20, 10);
+  rect(x + 160, y + 80, 10, 10);
+  rect(x + 150, y + 90, 10, 10);
+  rect(x + 150, y + 100, 10, 10);
+  rect(x + 140, y + 110, 10, 10);
+  rect(x + 130, y + 120, 10, 10);
+  rect(x + 120, y + 130, 10, 10);
+  pop();
+}
