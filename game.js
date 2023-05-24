@@ -146,16 +146,9 @@ function gameScreen() {
     } else {
       push();
       noStroke();
-      fill(128, 0, 32);
+      fill(103, 49, 71);
       rect(0, innerHeight - 20, innerWidth, 20);
 
-      fill(238, 75, 43);
-      rect(100, innerHeight - 10, 10, 10);
-      rect(200, innerHeight - 20, 10, 10);
-      rect(250, innerHeight - 10, 10, 10);
-      rect(50, innerHeight - 10, 10, 10);
-      rect(350, innerHeight - 20, 10, 10);
-      rect(250, innerHeight - 10, 10, 10);
       pop();
     }
 
@@ -310,6 +303,12 @@ class platforms {
 
     this.isOn = false;
     this.isDown = false;
+    this.r = random(255);
+    this.g = random(255);
+    this.b = random(255);
+    this.r2 = random(255);
+    this.g2 = random(255);
+    this.b2 = random(255);
   }
 
   move() {
@@ -358,12 +357,12 @@ class platforms {
     // set color based on isOn property
     if (this.isOn) {
       push();
-      fill(115, 193, 159);
+      fill(this.r, this.g, this.b);
       //Medium brick
 
       rect(this.x, this.y, 100, 19);
       //First row of bricks (medium)
-      fill(19, 88, 80);
+      fill(this.r2, this.g2, this.b2);
       rect(this.x, this.y, 6, 5);
       rect(this.x + 8, this.y, 12, 5);
       rect(this.x + 22, this.y, 12, 5);
