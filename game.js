@@ -24,7 +24,7 @@ let spikeHitBottom = false;
 let innerHeight = 700;
 let innerWidth = 400;
 
-let lava = 400;
+let lava = 40;
 let lavaCountdown = lava;
 
 let img; // this from p5 webbsite
@@ -77,7 +77,13 @@ function loseScreen() {
 
   text("Lvl: " + diffeculty, innerWidth / 2 - 60, 310, width, height);
   textSize(15);
-  text("Time: " + gameTime + "s", innerWidth / 2 - 60, 350, width, height);
+  text(
+    "Time: " + round(gameTime) + "s",
+    innerWidth / 2 - 60,
+    350,
+    width,
+    height
+  );
   fill(128, 0, 32);
 
   pop();
@@ -99,21 +105,22 @@ function gameScreen() {
   textSize(14);
 
   text("Lvl: " + diffeculty, 10, 20, width, height);
-  text("Time: " + gameTime + "s", 10, 35, width, height);
+  text("Time: " + round(gameTime) + "s", 10, 35, width, height);
   pop();
 
   //values that get uppdated, get added by one (these are mostly timers)
-  gameTime += 1;
+
+  gameTime += 0.1; // feels more like seconds if its 0.1 inst 1 but when shownig the number i round it to the nearest
   spikeCounter += 1;
   diffecultyTime += 1;
-  lavaCountdown -= 1;
+  lavaCountdown -= 0.1;
 
   // make the playes
   player1.move();
   player1.display();
 
   if (stage == "game") {
-    if (diffecultyTime === 600) {
+    if (diffecultyTime === 500) {
       diffecultyTime = 0; // reset counter
       diffeculty += 1; // add to the difficulty every time
     }
@@ -130,7 +137,7 @@ function gameScreen() {
 
     if (gameTime <= lava) {
       text(
-        lavaCountdown + " Seconds before the lava comes!",
+        round(lavaCountdown) + " Seconds before the lava comes!",
         100,
         550,
         width / 2,
