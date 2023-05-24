@@ -5,8 +5,13 @@ body {
 }
 
 body {
+  background-color: #001532;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.backgroundDrop {
+  position: absolute;
 }
