@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  background-color: #d1d9ee;
 }
 
 /*body {
@@ -11,7 +12,16 @@ body {
   justify-content: center;
   align-items: center;
 }*/
-
+p {
+  color: #000c2e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 {
+  color: #000c2e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
 body {
   display: grid;
   grid-template-columns: 50px 200px 400px 200px 50px;
@@ -20,23 +30,31 @@ body {
   grid-row-gap: 10px;
   overflow: hidden;
 }
+.story {
+  grid-area: 3/2/4/3;
+  align-self: end;
+}
 #game {
-  background-color: #c4cad1;
   grid-area: 2/3/4/4;
   justify-content: center;
   align-items: center;
 }
 .scoreboard {
   grid-area: 2/4/3/5;
-  /*background-color: #c4cad1;*/
+  background-color: #000c2e;
+  text-align: center;
+}
+ul {
+  grid-area: 2/4/3/5;
 }
 li {
-  grid-area: 2/4/3/5;
+  color: aliceblue;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 60px;
   list-style-type: none;
-  padding: 0;
+  padding-right: 40px;
   margin: 0;
-  position: absolute;
+
   top: 50%;
   left: 50%;
 }
@@ -47,6 +65,7 @@ canvas {
 }
 #howtoplay {
   grid-area: 3/4/4/5;
+  position: relative;
 }
 #highscore {
   justify-content: center;

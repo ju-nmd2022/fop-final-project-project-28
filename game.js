@@ -29,15 +29,18 @@ let lava = 40;
 let lavaCountdown = lava;
 
 // scoreboard
-let scores = [];
+//let scores = []; this is not needed
+
 let higestScore = 0;
 
 let img; // this from p5 webbsite
 let img2;
+let img3;
 function preload() {
   // this too
   img = loadImage("GameOver.png"); // i know it is a space between the game and over, idc
   img2 = loadImage("start.png");
+  img3 = loadImage("gamescreen.png");
 }
 //Setup
 function setup() {
@@ -65,7 +68,7 @@ function draw() {
 
 function startScreen() {
   // The look of the background
-
+  scoreboard();
   image(img2, 0, 0);
   img2.resize(400, 700);
 }
@@ -97,18 +100,23 @@ function loseScreen() {
   fill(128, 0, 32);
 
   pop();
+
   if (gameTime >= higestScore) {
     higestScore = gameTime;
+    localStorage.setItem("highscore", higestScore);
   }
 }
 
 //game
 function gameScreen() {
+  scoreboard();
   anyPlatformHitBottom = false; // skit i, existerar ej lol
 
   // aestectics ( lägg in backgrund här tack :D)
 
   background(0, 12, 46);
+  image(img3, 0, 0);
+  img3.resize(400, 700);
   //Text
   push();
   textSize(10);
@@ -149,6 +157,10 @@ function gameScreen() {
     }
 
     if (gameTime <= lava) {
+      textFont("Helvetica");
+      textSize(11);
+      fill(255, 255, 255);
+
       text(
         round(lavaCountdown) + " Seconds before the lava comes!",
         100,
@@ -252,9 +264,12 @@ function keyReleased() {
 }
 
 function scoreboard() {
+  const storedscore = localStorage.getItem("highscore");
+  higestScore = storedscore;
   const scoreslist = document.getElementById("scores");
+
   const li = document.createElement("li");
-  const nrScore = document.createTextNode(round(higestScore));
+  const nrScore = document.createTextNode(round(storedscore) + "s");
   li.appendChild(nrScore);
   scoreslist.innerHTML = "";
   scoreslist.appendChild(li);
@@ -306,8 +321,10 @@ class player {
     }
   }
   display() {
-    fill(this.a, this.b, this.c);
+    push();
+    fill(73, 212, 157);
     rect(this.x, this.y, this.width, this.height);
+    pop();
   }
 }
 //end of player class
