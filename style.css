@@ -18,6 +18,7 @@ body {
   grid-template-rows: 50px 400px 300px 50px;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+  overflow: hidden;
 }
 #game {
   background-color: #c4cad1;
