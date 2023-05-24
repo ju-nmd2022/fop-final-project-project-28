@@ -4,21 +4,35 @@ body {
   height: 100%;
 }
 
-body {
+/*body {
   background-color: #001532;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}*/
+
+body {
+  display: grid;
+  grid-template-columns: 50px 200px 400px 200px 50px;
+  grid-template-rows: 50px 400px 300px 50px;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+canvas {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }
 
+/*
 .backgroundDrop {
   left: 5rem;
   position: fixed;
 }
-
 canvas {
   top: 3rem;
   left: 30rem;
   position: absolute;
 }
+*/
