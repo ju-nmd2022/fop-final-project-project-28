@@ -94,8 +94,8 @@ function gameScreen() {
   anyPlatformHitBottom = false; // skit i, existerar ej lol
 
   // aestectics ( lägg in backgrund här tack :D)
-  mountain();
 
+  background(0, 12, 46);
   //Text
   push();
   textSize(10);
