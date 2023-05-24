@@ -28,6 +28,8 @@ body {
 .scoreboard {
   grid-area: 2/4/3/5;
   background-color: #c4cad1;
+  display: flex;
+  flex-direction: column;
 }
 canvas {
   justify-content: center;

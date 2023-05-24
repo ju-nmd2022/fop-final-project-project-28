@@ -28,6 +28,10 @@ let innerWidth = 400;
 let lava = 40;
 let lavaCountdown = lava;
 
+// scoreboard
+let scores = [];
+let score = document.getElementById("score");
+
 let img; // this from p5 webbsite
 let img2;
 function preload() {
@@ -37,9 +41,10 @@ function preload() {
 }
 //Setup
 function setup() {
-  let cnvs = createCanvas(innerWidth, innerHeight);
-  cnvs.parent("game");
-
+  //https://github.com/processing/p5.js/wiki/Positioning-your-canvas how i got this shit to the html and for it to lay in the grid :D
+  //let cnvs = createCanvas(innerWidth, innerHeight);
+  //cnvs.parent("game");
+  createCanvas(innerWidth, innerHeight);
   frameRate(30);
   player1 = new player(200, innerWidth / 2 - this.width / 2, 255, 255, 255);
 }
@@ -239,6 +244,15 @@ function keyReleased() {
   if (keyCode === UP_ARROW || key === " ") {
     player1.j = false;
   }
+}
+
+function scoreboard() {
+  const li = document.createElement("li");
+  const nrScore = document.createTextNode(
+    "Time; " + gameTime + " - lvl: " + diffeculty
+  );
+  li.appendChild("nrScore");
+  document.getElementById("scores").appendChild(li);
 }
 //end of functions
 
