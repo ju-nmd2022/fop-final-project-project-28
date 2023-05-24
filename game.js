@@ -1,7 +1,7 @@
 //global
 
 // game statges
-let stage = "start";
+let stage = "lose";
 let gameTime = 0;
 let diffecultyTime = 0;
 let diffeculty = 1;
@@ -26,11 +26,17 @@ let innerWidth = 400;
 
 let lava = 400;
 let lavaCountdown = lava;
+
+let img; // this from p5 webbsite
+function preload() {
+  // this too
+  img = loadImage("GameOver.png"); // i know it is a space between the game and over, idc
+}
 //Setup
 function setup() {
   createCanvas(innerWidth, innerHeight);
   frameRate(30);
-  player1 = new player(200, 450, 255, 255, 255);
+  player1 = new player(200, innerWidth / 2 - this.width / 2, 255, 255, 255);
 }
 //end of setup
 
@@ -49,37 +55,34 @@ function draw() {
 
 function startScreen() {
   // The look of the background
-  background(67, 38, 100);
+  mountain();
   //Text
-  textSize(10);
+  push();
+  textSize(40);
+  textFont("Helvetica");
   fill(255, 255, 255);
-  text(
-    "     time til next lvl: " +
-      diffecultyTime +
-      "     level: " +
-      diffeculty +
-      "     gametime: " +
-      gameTime,
-    10,
-    10,
-    width / 2,
-    height / 2
-  );
+  text("Press 's' To Start", 10, 640, width, height);
+  pop();
 }
 
 function loseScreen() {
   // makje it look nice here
+  mountain();
   background(50, 50, 50);
+  image(img, 0, 0);
+  img.resize(400, 700);
   //Text
-  textSize(10);
-  fill(255, 255, 255);
-  text(
-    "     level: " + diffeculty + "     gametime: " + gameTime,
-    10,
-    10,
-    width / 2,
-    height / 2
-  );
+  push();
+
+  textFont("Helvetica");
+  textSize(25);
+  fill(128, 0, 32);
+
+  text("Lvl: " + diffeculty, innerWidth / 2 - 60, 310, width, height);
+  text("Time: " + gameTime + "s", innerWidth / 2 - 60, 350, width, height);
+  fill(128, 0, 32);
+
+  pop();
 }
 
 //game
@@ -87,17 +90,18 @@ function gameScreen() {
   anyPlatformHitBottom = false; // skit i, existerar ej lol
 
   // aestectics ( lägg in backgrund här tack :D)
-  background(16, 17, 24);
+  mountain();
   //Text
+  push();
   textSize(10);
   fill(255, 255, 255);
-  text(
-    "     level: " + diffeculty + "     gametime: " + gameTime,
-    10,
-    10,
-    width / 2,
-    height / 2
-  );
+
+  textFont("Helvetica");
+  textSize(14);
+
+  text("Lvl: " + diffeculty, 10, 20, width, height);
+  text("Time: " + gameTime + "s", 10, 35, width, height);
+  pop();
 
   //values that get uppdated, get added by one (these are mostly timers)
   gameTime += 1;
@@ -134,14 +138,18 @@ function gameScreen() {
         height / 2
       );
     } else {
+      push();
+      noStroke();
+      fill(128, 0, 32);
       rect(0, innerHeight - 20, innerWidth, 20);
+      pop();
     }
 
     // lose "villkor", how to get to the lose screen
     if (player1.y + player1.height >= innerHeight && gameTime >= lava) {
-      background(200, 17, 0);
+      stage = "lose";
     } else if (spikeCollide) {
-      background(200, 17, 100);
+      stage = "lose";
     }
 
     /////update platforms
@@ -186,8 +194,8 @@ function keyPressed() {
     platformCounter = 0;
     diffeculty = 1;
     diffecultyTime = 0;
-    player1.x = 150;
-    player1.y = 500;
+    player1.x = innerWidth / 2 - player1.width / 2;
+    player1.y = innerHeight - player1.height;
     spikeCollide = false;
     lavaCountdown = lava;
     gameTime = 0;
@@ -335,46 +343,80 @@ class platforms {
     // draw platform
     // set color based on isOn property
     if (this.isOn) {
-      fill(255, 255, 255);
-    } else {
+      push();
       fill(115, 193, 159);
+      //Medium brick
+
+      rect(this.x, this.y, 100, 19);
+      //First row of bricks (medium)
+      fill(19, 88, 80);
+      rect(this.x, this.y, 6, 5);
+      rect(this.x + 8, this.y, 12, 5);
+      rect(this.x + 22, this.y, 12, 5);
+      rect(this.x + 36, this.y, 12, 5);
+      rect(this.x + 50, this.y, 12, 5);
+      rect(this.x + 64, this.y, 12, 5);
+      rect(this.x + 78, this.y, 12, 5);
+      rect(this.x + 92, this.y, 8, 5);
+
+      //Second row of bricks (medium)
+      rect(this.x, this.y + 7, 11, 5);
+      rect(this.x + 13, this.y + 7, 12, 5);
+      rect(this.x + 27, this.y + 7, 12, 5);
+      rect(this.x + 41, this.y + 7, 12, 5);
+      rect(this.x + 55, this.y + 7, 12, 5);
+      rect(this.x + 69, this.y + 7, 12, 5);
+      rect(this.x + 83, this.y + 7, 12, 5);
+      rect(this.x + 97, this.y + 7, 3, 5);
+
+      //Third row of bricks (medium)
+      rect(this.x, this.y + 14, 6, 5);
+      rect(this.x + 8, this.y + 14, 12, 5);
+      rect(this.x + 22, this.y + 14, 12, 5);
+      rect(this.x + 36, this.y + 14, 12, 5);
+      rect(this.x + 50, this.y + 14, 12, 5);
+      rect(this.x + 64, this.y + 14, 12, 5);
+      rect(this.x + 78, this.y + 14, 12, 5);
+      rect(this.x + 92, this.y + 14, 8, 5);
+      pop();
+    } else {
+      push();
+      fill(199, 236, 242);
+      //Medium brick
+
+      rect(this.x, this.y, 100, 19);
+      //First row of bricks (medium)
+      fill(15, 59, 62);
+      rect(this.x, this.y, 6, 5);
+      rect(this.x + 8, this.y, 12, 5);
+      rect(this.x + 22, this.y, 12, 5);
+      rect(this.x + 36, this.y, 12, 5);
+      rect(this.x + 50, this.y, 12, 5);
+      rect(this.x + 64, this.y, 12, 5);
+      rect(this.x + 78, this.y, 12, 5);
+      rect(this.x + 92, this.y, 8, 5);
+
+      //Second row of bricks (medium)
+      rect(this.x, this.y + 7, 11, 5);
+      rect(this.x + 13, this.y + 7, 12, 5);
+      rect(this.x + 27, this.y + 7, 12, 5);
+      rect(this.x + 41, this.y + 7, 12, 5);
+      rect(this.x + 55, this.y + 7, 12, 5);
+      rect(this.x + 69, this.y + 7, 12, 5);
+      rect(this.x + 83, this.y + 7, 12, 5);
+      rect(this.x + 97, this.y + 7, 3, 5);
+
+      //Third row of bricks (medium)
+      rect(this.x, this.y + 14, 6, 5);
+      rect(this.x + 8, this.y + 14, 12, 5);
+      rect(this.x + 22, this.y + 14, 12, 5);
+      rect(this.x + 36, this.y + 14, 12, 5);
+      rect(this.x + 50, this.y + 14, 12, 5);
+      rect(this.x + 64, this.y + 14, 12, 5);
+      rect(this.x + 78, this.y + 14, 12, 5);
+      rect(this.x + 92, this.y + 14, 8, 5);
+      pop();
     }
-
-    push();
-    //Medium brick
-    fill(78, 120, 123);
-    // rect(this.x, this.y, 100, 19);
-    //First row of bricks (medium)
-    fill(15, 59, 62);
-    rect(this.x, this.y, 6, 5);
-    rect(this.x + 8, this.y, 12, 5);
-    rect(this.x + 22, this.y, 12, 5);
-    rect(this.x + 36, this.y, 12, 5);
-    rect(this.x + 50, this.y, 12, 5);
-    rect(this.x + 64, this.y, 12, 5);
-    rect(this.x + 78, this.y, 12, 5);
-    rect(this.x + 92, this.y, 8, 5);
-
-    //Second row of bricks (medium)
-    rect(this.x, this.y + 7, 11, 5);
-    rect(this.x + 13, this.y + 7, 12, 5);
-    rect(this.x + 27, this.y + 7, 12, 5);
-    rect(this.x + 41, this.y + 7, 12, 5);
-    rect(this.x + 55, this.y + 7, 12, 5);
-    rect(this.x + 69, this.y + 7, 12, 5);
-    rect(this.x + 83, this.y + 7, 12, 5);
-    rect(this.x + 97, this.y + 7, 3, 5);
-
-    //Third row of bricks (medium)
-    rect(this.x, this.y + 14, 6, 5);
-    rect(this.x + 8, this.y + 14, 12, 5);
-    rect(this.x + 22, this.y + 14, 12, 5);
-    rect(this.x + 36, this.y + 14, 12, 5);
-    rect(this.x + 50, this.y + 14, 12, 5);
-    rect(this.x + 64, this.y + 14, 12, 5);
-    rect(this.x + 78, this.y + 14, 12, 5);
-    rect(this.x + 92, this.y + 14, 8, 5);
-    pop();
   }
 }
 //end of platform class
@@ -420,3 +462,210 @@ class spikes {
 //end of spike class
 
 //end of classes
+// draw functions
+function mountain() {
+  let x = 100;
+  let y = 100;
+  push();
+  noStroke();
+
+  //Background
+  //Colordrop
+  fill(0, 12, 46);
+  rect(x - 100, y - 100, 400, 60);
+
+  fill(0, 21, 52);
+  rect(x - 100, y - 40, 400, 60);
+
+  fill(0, 37, 56);
+  rect(x - 100, y + 20, 400, 60);
+
+  fill(1, 66, 72);
+  rect(x - 100, y + 80, 400, 60);
+
+  fill(1, 100, 87);
+  rect(x - 100, y + 140, 400, 60);
+
+  fill(6, 124, 98);
+  rect(x - 100, y + 200, 400, 60);
+
+  fill(1, 66, 72);
+  rect(x - 100, y + 260, 400, 80);
+
+  fill(0, 37, 56);
+  rect(x - 100, y + 340, 400, 80);
+
+  fill(0, 21, 52);
+  rect(x - 100, 520, 400, 80);
+
+  fill(0, 21, 46);
+  rect(x - 100, y + 500, 450, 100);
+
+  //Dark (left mountain)
+  fill(0, 21, 50);
+  rect(x + 30, y + 110, 30, 10);
+  rect(x + 20, y + 120, 50, 10);
+  rect(x + 10, y + 130, 70, 10);
+  rect(x, y + 140, 90, 10);
+  rect(x - 10, y + 150, 110, 10);
+  rect(x - 20, y + 160, 130, 10);
+  rect(x - 30, y + 170, 330, 10);
+  rect(x - 40, y + 180, 340, 10);
+  rect(x - 50, y + 190, 350, 10);
+  rect(x - 70, y + 200, 370, 10);
+  rect(x - 80, y + 210, 380, 10);
+  rect(x - 90, y + 220, 390, 10);
+  rect(x - 100, y + 230, 400, 30);
+
+  //Medium (left mounatain)
+  fill(1, 111, 90);
+  rect(x + 30, y + 110, 30, 10);
+  rect(x + 20, y + 120, 30, 10);
+  rect(x + 10, y + 130, 30, 10);
+  rect(x, y + 140, 30, 10);
+  rect(x - 10, y + 150, 40, 10);
+  rect(x - 20, y + 160, 40, 10);
+  rect(x - 30, y + 170, 30, 10);
+  rect(x - 40, y + 180, 30, 10);
+  rect(x - 50, y + 190, 30, 10);
+  rect(x - 70, y + 200, 50, 10);
+  rect(x - 80, y + 210, 40, 10);
+  rect(x - 90, y + 220, 40, 10);
+  rect(x - 100, y + 230, 50, 10);
+  rect(x - 100, y + 240, 40, 10);
+  rect(x - 100, y + 250, 20, 10);
+  rect(x - 60, y + 250, 10, 10);
+  rect(x - 50, y + 230, 10, 20);
+  rect(x - 20, y + 210, 10, 20);
+  rect(x - 30, y + 230, 10, 10);
+  rect(x - 10, y + 200, 10, 20);
+  rect(x, y + 180, 10, 10);
+  rect(x + 20, y + 170, 10, 10);
+
+  //Light (left mountain)
+  fill(2, 161, 108);
+  rect(x + 30, y + 110, 20, 10);
+  rect(x + 20, y + 120, 20, 10);
+  rect(x + 10, y + 130, 20, 10);
+  rect(x, y + 140, 20, 10);
+  rect(x - 10, y + 150, 30, 10);
+  rect(x - 20, y + 160, 20, 10);
+  rect(x - 30, y + 170, 20, 10);
+  rect(x - 40, y + 180, 20, 10);
+  rect(x - 50, y + 190, 30, 10);
+  rect(x - 70, y + 200, 30, 10);
+  rect(x - 80, y + 210, 30, 10);
+  rect(x - 90, y + 220, 30, 10);
+  rect(x - 100, y + 230, 30, 10);
+  rect(x - 100, y + 240, 30, 10);
+  rect(x - 100, y + 250, 10, 10);
+
+  //Extra light (left mountain)
+  fill(2, 182, 122);
+  rect(x + 30, y + 110, 10, 10);
+  rect(x + 20, y + 120, 10, 10);
+  rect(x + 10, y + 130, 10, 10);
+  rect(x, y + 140, 10, 10);
+  rect(x - 10, y + 150, 20, 10);
+  rect(x - 20, y + 160, 10, 10);
+  rect(x - 30, y + 170, 10, 10);
+  rect(x - 40, y + 180, 10, 10);
+  rect(x - 50, y + 190, 10, 10);
+  rect(x - 70, y + 200, 20, 10);
+  rect(x - 80, y + 210, 10, 10);
+  rect(x - 90, y + 220, 20, 10);
+  rect(x - 100, y + 230, 10, 10);
+
+  //Dark (right mountain)
+  fill(0, 21, 50);
+  rect(x + 250, y, 50, 10);
+  rect(x + 240, y + 10, 60, 10);
+  rect(x + 230, y + 20, 70, 10);
+  rect(x + 220, y + 30, 80, 10);
+  rect(x + 210, y + 40, 90, 10);
+  rect(x + 200, y + 50, 100, 10);
+  rect(x + 180, y + 60, 120, 10);
+  rect(x + 170, y + 70, 130, 10);
+  rect(x + 160, y + 80, 140, 10);
+  rect(x + 150, y + 90, 150, 20);
+  rect(x + 140, y + 110, 160, 10);
+  rect(x + 130, y + 120, 170, 10);
+  rect(x + 120, y + 130, 180, 10);
+  rect(x + 110, y + 140, 190, 10);
+  rect(x + 100, y + 150, 200, 10);
+  rect(x + 110, y + 160, 190, 10);
+
+  //Medium (right mounatain)
+  fill(1, 111, 90);
+  rect(x + 280, y - 40, 20, 10);
+  rect(x + 270, y - 30, 30, 10);
+  rect(x + 260, y - 20, 40, 20);
+  rect(x + 250, y, 50, 10);
+  rect(x + 240, y + 10, 50, 10);
+  rect(x + 230, y + 20, 50, 10);
+  rect(x + 220, y + 30, 60, 10);
+  rect(x + 210, y + 40, 60, 10);
+  rect(x + 200, y + 50, 50, 10);
+  rect(x + 180, y + 60, 60, 10);
+  rect(x + 170, y + 70, 60, 10);
+  rect(x + 160, y + 80, 60, 10);
+  rect(x + 150, y + 90, 50, 10);
+  rect(x + 150, y + 100, 50, 10);
+  rect(x + 140, y + 110, 50, 10);
+  rect(x + 130, y + 120, 50, 10);
+  rect(x + 120, y + 130, 50, 10);
+  rect(x + 110, y + 140, 40, 10);
+  rect(x + 100, y + 150, 40, 10);
+  rect(x + 190, y + 130, 10, 20);
+  rect(x + 180, y + 150, 10, 10);
+  rect(x + 150, y + 150, 10, 10);
+  rect(x + 140, y + 160, 10, 10);
+  rect(x + 120, y + 160, 10, 10);
+  rect(x + 110, y + 170, 10, 10);
+  rect(x + 170, y + 140, 10, 30);
+  rect(x + 200, y + 110, 10, 20);
+  rect(x + 240, y + 70, 10, 20);
+  rect(x + 230, y + 90, 10, 10);
+
+  //Light (right mountain)
+  fill(2, 161, 108);
+  rect(x + 280, y - 40, 10, 10);
+  rect(x + 270, y - 30, 20, 10);
+  rect(x + 260, y - 20, 20, 20);
+  rect(x + 250, y, 20, 10);
+  rect(x + 240, y + 10, 30, 10);
+  rect(x + 230, y + 20, 30, 10);
+  rect(x + 220, y + 30, 30, 10);
+  rect(x + 210, y + 40, 40, 10);
+  rect(x + 200, y + 50, 30, 10);
+  rect(x + 180, y + 60, 40, 10);
+  rect(x + 170, y + 70, 40, 10);
+  rect(x + 160, y + 80, 40, 10);
+  rect(x + 150, y + 90, 30, 10);
+  rect(x + 150, y + 100, 20, 10);
+  rect(x + 140, y + 110, 20, 10);
+  rect(x + 130, y + 120, 30, 10);
+  rect(x + 120, y + 130, 20, 10);
+  rect(x + 110, y + 140, 20, 10);
+  rect(x + 100, y + 150, 20, 10);
+
+  //Extra light (right mountain)
+  fill(2, 182, 122);
+  rect(x + 270, y - 30, 10, 10);
+  rect(x + 260, y - 20, 10, 20);
+  rect(x + 250, y, 10, 10);
+  rect(x + 240, y + 10, 10, 10);
+  rect(x + 230, y + 20, 10, 10);
+  rect(x + 220, y + 30, 10, 10);
+  rect(x + 210, y + 40, 10, 10);
+  rect(x + 200, y + 50, 10, 10);
+  rect(x + 180, y + 60, 20, 10);
+  rect(x + 170, y + 70, 20, 10);
+  rect(x + 160, y + 80, 10, 10);
+  rect(x + 150, y + 90, 10, 10);
+  rect(x + 150, y + 100, 10, 10);
+  rect(x + 140, y + 110, 10, 10);
+  rect(x + 130, y + 120, 10, 10);
+  rect(x + 120, y + 130, 10, 10);
+  pop();
+} //End of mountain
