@@ -15,7 +15,7 @@ body {
 body {
   display: grid;
   grid-template-columns: 50px 200px 400px 200px 50px;
-  grid-template-rows: 50px 400px 300px 50px;
+  grid-template-rows: 50px 300px 400px 50px;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   overflow: hidden;
@@ -28,14 +28,17 @@ body {
 }
 .scoreboard {
   grid-area: 2/4/3/5;
-  background-color: #c4cad1;
-  display: flex;
-  flex-direction: column;
+  /*background-color: #c4cad1;*/
 }
 li {
+  grid-area: 2/4/3/5;
+  font-size: 60px;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 canvas {
   justify-content: center;
