@@ -5,6 +5,7 @@ This is a file containing all drawings used for our main game
 
 x = 100;
 y = 100;
+
 noStroke();
 
 //Background
@@ -881,3 +882,17 @@ rect(this.x + 146, this.y + 220, 8, 14);
 
 //fill(232, 237, 237); (extra light, shine)
 */
+let innerHeight = 600;
+let innerWidth = 400;
+push();
+noStroke();
+fill(128, 0, 32);
+rect(0, innerHeight - 20, innerWidth, 20);
+fill(238, 75, 43);
+rect(100, innerHeight - 10, 10, 10);
+rect(200, innerHeight - 20, 10, 10);
+rect(250, innerHeight - 10, 10, 10);
+rect(50, innerHeight - 10, 10, 10);
+rect(350, innerHeight - 20, 10, 10);
+rect(250, innerHeight - 10, 10, 10);
+pop();

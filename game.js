@@ -148,6 +148,14 @@ function gameScreen() {
       noStroke();
       fill(128, 0, 32);
       rect(0, innerHeight - 20, innerWidth, 20);
+
+      fill(238, 75, 43);
+      rect(100, innerHeight - 10, 10, 10);
+      rect(200, innerHeight - 20, 10, 10);
+      rect(250, innerHeight - 10, 10, 10);
+      rect(50, innerHeight - 10, 10, 10);
+      rect(350, innerHeight - 20, 10, 10);
+      rect(250, innerHeight - 10, 10, 10);
       pop();
     }
 
