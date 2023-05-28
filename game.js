@@ -140,13 +140,13 @@ function gameScreen() {
   player1.move();
   player1.display();
 
-  if (stage == "game") {
+  if (stage === "game") {
     if (diffecultyTime === 500) {
       diffecultyTime = 0; // reset counter
       diffeculty += 1; // add to the difficulty every time
     }
 
-    if (spikeCounter == 180) {
+    if (spikeCounter === 180) {
       spike = [];
       spikeCounter = 0; // reset counter
       valueSpike = Math.floor(Math.random() * 5) + 1;
@@ -215,10 +215,10 @@ function keyPressed() {
     }
   }
 
-  if (key == "p") {
+  if (key === "p") {
     stage = "start";
   }
-  if (key == "s") {
+  if (key === "s") {
     stage = "game";
     /// some values that get restarted when u go into the startscreen
     gameTime = 0;
