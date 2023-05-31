@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everlore's Tower</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="p5.min.js"></script>
+  </head>
+  <body>
+    <div class="story">
+      <h1>Everlore's Tower</h1>
+      <p>
+        There once was an evil wizard called Everlore. He wanted all fairies and
+        their magic all to himself. One by one the fairies turned into blobs
+        with no magical powers left as Everlore absorbed it all himself. Now he
+        has captured you and he turned you into a blob! You must score as high
+        as possible to get a chance to escape Everlore's tower. Jump on the
+        bricks as they get closer, but watch out for the occasional icicles that
+        he sends down. Good luck!
+      </p>
+    </div>
+    <div id="game"></div>
+
+    <div class="scoreboard">
+      <img
+        id="highscore"
+        src="highscore.png"
+        alt="highscore"
+        width="200"
+        height="60"
+      />
+      <ul id="scores"></ul>
+    </div>
+
+    <img
+      id="howtoplay"
+      src="howto.png"
+      alt="instructions"
+      width="200"
+      height="290"
+    />
+
+    <div class="backgroundDrop"></div>
+  </body>
+  <script src="game.js"></script>
+</html>

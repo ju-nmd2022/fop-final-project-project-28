@@ -1,0 +1,83 @@
+/* The following 10 lines of code was adapted from https://github.com/processing/p5.js/wiki/Positioning-your-canvas Accessed: 2023-05-24*/
+html,
+body {
+  height: 100%;
+  background-color: #d1d9ee;
+}
+
+/*body {
+  background-color: #001532;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
+p {
+  color: #000c2e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 {
+  color: #000c2e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+body {
+  display: grid;
+  grid-template-columns: 10px 200px 400px 200px 50px;
+  grid-template-rows: 10px 300px 400px 50px;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  overflow: hidden;
+}
+.story {
+  grid-area: 3/2/4/3;
+  align-self: end;
+}
+#game {
+  grid-area: 2/3/4/4;
+  justify-content: center;
+  align-items: center;
+}
+.scoreboard {
+  grid-area: 2/4/3/5;
+  background-color: #000c2e;
+  text-align: center;
+}
+ul {
+  grid-area: 2/4/3/5;
+}
+li {
+  color: aliceblue;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  list-style-type: none;
+  padding-right: 40px;
+  margin: 0;
+
+  top: 50%;
+  left: 50%;
+}
+canvas {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+#howtoplay {
+  grid-area: 3/4/4/5;
+  position: relative;
+}
+#highscore {
+  justify-content: center;
+}
+/*
+.backgroundDrop {
+  left: 5rem;
+  position: fixed;
+}
+canvas {
+  top: 3rem;
+  left: 30rem;
+  position: absolute;
+}
+*/
