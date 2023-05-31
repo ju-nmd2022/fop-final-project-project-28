@@ -45,8 +45,8 @@ function preload() {
 //Setup
 function setup() {
   //https://github.com/processing/p5.js/wiki/Positioning-your-canvas how i got this shit to the html and for it to lay in the grid :D
-  let cnvs = createCanvas(innerWidth, innerHeight);
-  cnvs.parent("game");
+  let cnvs = createCanvas(innerWidth, innerHeight); // the error comes from the createCanvas function being called before the DOM is fully loaded. chat gpt help to find the error
+  cnvs.parent("game"); //puts game into the game div
   //createCanvas(innerWidth, innerHeight);
   frameRate(30);
   player1 = new player(200, innerWidth / 2 - this.width / 2, 255, 255, 255);
@@ -76,7 +76,7 @@ function startScreen() {
 function loseScreen() {
   // makje it look nice here
 
-  mountain();
+  mountain(); // not used lol
   background(50, 50, 50);
   image(img, 0, 0);
   img.resize(400, 700);
@@ -102,6 +102,7 @@ function loseScreen() {
   pop();
 
   if (gameTime >= higestScore) {
+    //checks if gametime value is bigger or the same as higestscore
     higestScore = gameTime;
     localStorage.setItem("highscore", higestScore);
   }
@@ -151,7 +152,7 @@ function gameScreen() {
       spikeCounter = 0; // reset counter
       valueSpike = Math.floor(Math.random() * 5) + 1;
       // create spikes
-      for (let i = 0; i < valueSpike + diffeculty; i++) {
+      for (let i = 0; i < valueSpike; i++) {
         spike[i] = new spikes(random(0, innerWidth), 0);
       }
     }
@@ -311,7 +312,7 @@ class player {
     if (this.y + this.height >= innerHeight) {
       this.y = innerHeight - this.height;
       this.yS = 0;
-      this.isOnGround = true;
+      this.isOnGround = true; // this is used to check if it touching anything so i can stop it from double jumping
     } else {
       this.isOnGround = false;
     }
